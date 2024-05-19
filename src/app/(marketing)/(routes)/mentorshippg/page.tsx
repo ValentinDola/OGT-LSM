@@ -1,17 +1,16 @@
 import React from "react";
-import { Button } from "../ui/button";
+
+import { Check, Sparkles } from "lucide-react";
 import {
   Select,
   SelectContent,
   SelectGroup,
   SelectItem,
-  SelectLabel,
   SelectTrigger,
   SelectValue,
-} from "../ui/select";
-import { Check, Sparkles } from "lucide-react";
+} from "@/components/ui/select";
 
-export default function Plan() {
+export default function MentorshipPrograms() {
   const quotes = [
     {
       href: "/",
@@ -90,11 +89,11 @@ export default function Plan() {
     },
   ];
   return (
-    <section className="max-w-[1380px] w-full mx-auto overflow-hidden mb-5">
+    <section className="max-w-[1380px] w-full mx-auto overflow-hidden mt-[160px] mb-10">
       <div className="my-0 px-5 py-0">
         <div className="box-border w-full flex flex-col justify-center items-center gap-4 text-center">
           <h2 className="text-[3rem] tracking-[-0.064em] font-semibold max-[986px]:text-[3rem] max-[400px]:text-[2rem] max-[600px]:text-[2.3rem]">
-            Choose your plan
+            Choose your program
           </h2>
           <h2 className="text-[1.2rem] tracking-[-0.064em] font-semibold max-[986px]:text-[3rem] max-[400px]:text-[1rem] max-[600px]:text-[1.2rem]">
             Learning forex made easier

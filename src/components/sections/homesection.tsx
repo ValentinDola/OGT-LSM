@@ -2,8 +2,22 @@
 import Image from "next/image";
 import React, { useState } from "react";
 import { Button } from "../ui/button";
+import { useUser } from "@clerk/nextjs";
+import { useRouter } from "next/navigation";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import Video from "next-video";
+import getStarted from "/videos/get-started.mp4";
 
 export default function HomeSection() {
+  const { isSignedIn, user, isLoaded } = useUser();
+  const router = useRouter();
   const [activeThumbnailImage, setActiveThumbnailImage] = useState(0);
 
   const testimonials = [
@@ -50,6 +64,10 @@ export default function HomeSection() {
   const getUsername = (i: number) => testimonials[i].username;
 
   const getHref = (i: number) => testimonials[i].href;
+
+  const handleEnrollNow = () => {
+    if (isSignedIn) router.push("/mentorshippl");
+  };
 
   return (
     <section>
@@ -117,15 +135,22 @@ export default function HomeSection() {
             </h6>
             <div className="flex w-[600px] justify-center items-center mt-7 max-[400px]:mt-4">
               <Button
+                onClick={() => router.push("/freecourses")}
                 variant={"link"}
                 className={
-                  "mr-7 text-base bg-[none] text-[#0066f5] shadow-none  "
+                  "mr-7 text-base bg-[none] text-[#0066f5] shadow-none"
                 }
               >
                 Join free class{" "}
               </Button>
 
-              <button className={"button_auth  "}>Enroll now</button>
+              <Button
+                disabled={!isLoaded}
+                onClick={handleEnrollNow}
+                className={"button_auth"}
+              >
+                Enroll now
+              </Button>
             </div>
           </div>
         </div>
