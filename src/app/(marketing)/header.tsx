@@ -42,7 +42,7 @@ export const Header = () => {
   const pathname = usePathname();
   const { isSignedIn, user, isLoaded } = useUser();
 
-  const isMentorMode = pathname?.includes("/mentor");
+  const isMentorMode = pathname?.includes("/mentor/");
 
   const routes = isMentorMode ? MRoutes : Routes;
 
@@ -188,12 +188,12 @@ export const Header = () => {
                       className={`${
                         item.href === pathname
                           ? `${
-                              isMentorMode ? "text-black" : "text-[#0066F5]"
+                              isMentorMode ? "text-white" : "text-[#0066F5]"
                             } outline-none uppercase font-bold text-[16px] cursor-pointer`
                           : `${
                               isMentorMode && "text-white"
                             } outline-none uppercase text-[14px] cursor-pointer`
-                      } hover:font-semibold `}
+                      } transition hover:font-semibold `}
                       href={item.href}
                     >
                       {item.name}
