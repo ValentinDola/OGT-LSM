@@ -1,7 +1,12 @@
 import { redirect } from "next/navigation";
 import Link from "next/link";
 import { IconBadge } from "@/components/icon-badge";
-import { LayoutDashboard, ListVideo, PackageOpen } from "lucide-react";
+import {
+  Banknote,
+  LayoutDashboard,
+  ListVideo,
+  PackageOpen,
+} from "lucide-react";
 
 import { auth } from "@clerk/nextjs/server";
 import { db } from "@/lib/db";
@@ -10,6 +15,7 @@ import { DescriptionForm } from "./_components/description-form";
 import { ImageForm } from "./_components/image-form";
 import { CategoryForm } from "./_components/category-form";
 import { AttachmentForm } from "./_components/attachment-form";
+import { PriceForm } from "./_components/price-form";
 
 export default async function Edit({
   params,
@@ -95,6 +101,13 @@ export default async function Edit({
                 <h2 className="text-xl">Course chapters</h2>
               </div>
               <div>TODO: chapters</div>
+            </div>
+            <div>
+              <div className="flex items-center gap-x-2">
+                <IconBadge icon={Banknote} />
+                <h2 className="text-xl">Course Price</h2>
+              </div>
+              <PriceForm initialData={course} courseId={course.id} />
             </div>
 
             <div>
