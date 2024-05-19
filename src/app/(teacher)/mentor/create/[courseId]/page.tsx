@@ -1,13 +1,15 @@
 import { redirect } from "next/navigation";
 import Link from "next/link";
 import { IconBadge } from "@/components/icon-badge";
-import { LayoutDashboard } from "lucide-react";
+import { LayoutDashboard, ListVideo, PackageOpen } from "lucide-react";
 
 import { auth } from "@clerk/nextjs/server";
 import { db } from "@/lib/db";
 import { TitleForm } from "./_components/title-form";
 import { DescriptionForm } from "./_components/description-form";
 import { ImageForm } from "./_components/image-form";
+import { CategoryForm } from "./_components/category-form";
+import { AttachmentForm } from "./_components/attachment-form";
 
 export default async function Edit({
   params,
@@ -23,6 +25,19 @@ export default async function Edit({
   const course = await db.course.findUnique({
     where: {
       id: params.courseId,
+    },
+    include: {
+      attachments: {
+        orderBy: {
+          createdAt: "desc",
+        },
+      },
+    },
+  });
+
+  const categories = await db.category.findMany({
+    orderBy: {
+      name: "asc",
     },
   });
 
@@ -64,6 +79,32 @@ export default async function Edit({
             <TitleForm initialData={course} courseId={course.id} />
             <DescriptionForm initialData={course} courseId={course.id} />
             <ImageForm initialData={course} courseId={course.id} />
+            <CategoryForm
+              initialData={course}
+              courseId={course.id}
+              options={categories?.map((category) => ({
+                label: category.name,
+                value: category.id,
+              }))}
+            />
+          </div>
+          <div className="space-y-6 ml-4">
+            <div>
+              <div className="flex items-center gap-x-2">
+                <IconBadge icon={ListVideo} />
+                <h2 className="text-xl">Course chapters</h2>
+              </div>
+              <div>TODO: chapters</div>
+            </div>
+
+            <div>
+              <div className="flex items-center gap-x-2">
+                <IconBadge icon={PackageOpen} />
+                <h2 className="text-xl">Course attachement</h2>
+              </div>
+
+              <AttachmentForm initialData={course} courseId={course.id} />
+            </div>
           </div>
         </div>
       </div>

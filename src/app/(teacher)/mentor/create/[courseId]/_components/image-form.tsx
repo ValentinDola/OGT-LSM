@@ -6,21 +6,12 @@ import axios from "axios";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Image from "next/image";
-import {
-  Form,
-  FormControl,
-  FormDescription,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
+
 import toast from "react-hot-toast";
 import { Button } from "@/components/ui/button";
 
 import { Plus, Pencil, ImageIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
-import { cn } from "@/lib/utils";
 import { Course } from "@prisma/client";
 import { FileUpload } from "@/components/file-upload";
 
@@ -48,8 +39,6 @@ export const ImageForm = ({ initialData, courseId }: ImageFormProps) => {
   const router = useRouter();
 
   const toggleEdit = () => setIsEditing((current) => !current);
-
-  const { isSubmitting, isValid } = form.formState;
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
@@ -81,20 +70,21 @@ export const ImageForm = ({ initialData, courseId }: ImageFormProps) => {
           )}
         </Button>
       </div>
-      {!isEditing && !initialData.imageUrl ? (
-        <div className="flex justify-center items-center bg-slate-200 h-60 rounded-md">
-          <ImageIcon className="h-10 w-10 text-slate-500" />
-        </div>
-      ) : (
-        <div className="relative aspect-video mt-2">
-          <Image
-            src={initialData.imageUrl}
-            alt="upload"
-            fill
-            className="object-cover rounded-md"
-          />
-        </div>
-      )}
+      {!isEditing &&
+        (!initialData.imageUrl ? (
+          <div className="flex justify-center items-center bg-slate-200 h-60 rounded-md">
+            <ImageIcon className="h-10 w-10 text-slate-500" />
+          </div>
+        ) : (
+          <div className="relative aspect-video mt-2">
+            <Image
+              src={initialData.imageUrl || ""}
+              alt="upload"
+              fill
+              className="object-cover rounded-md"
+            />
+          </div>
+        ))}
 
       {isEditing && (
         <div>
