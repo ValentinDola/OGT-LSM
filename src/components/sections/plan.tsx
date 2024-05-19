@@ -10,13 +10,14 @@ import {
   SelectValue,
 } from "../ui/select";
 import { Check, Sparkles } from "lucide-react";
+import { formatPrice } from "@/lib/format";
 
 export default function Plan() {
   const quotes = [
     {
       href: "/",
       title: "Monthly Plan",
-      fee: "$75",
+      fee: 75,
       quote:
         "FULL access to our free resource and course as you begin your Forex Journey",
       benefits: [
@@ -33,7 +34,7 @@ export default function Plan() {
     {
       href: "/",
       title: "3 Months Plan",
-      fee: "$197",
+      fee: 197,
       quote:
         "FULL access to our free resource and course as you begin your Forex Journey",
       benefits: [
@@ -52,7 +53,7 @@ export default function Plan() {
     {
       href: "/",
       title: "6 Months Plan",
-      fee: "$339",
+      fee: 339,
       icon: <Sparkles color="#FFC46B" />,
       quote:
         "FULL access to our free resource and course as you begin your Forex Journey",
@@ -72,7 +73,7 @@ export default function Plan() {
     {
       href: "/",
       title: "12 Months Plan",
-      fee: "$599",
+      fee: 599,
       icon: <Sparkles color="#FFC46B" />,
       icon0: <Sparkles color="#FFF851" />,
       quote:
@@ -127,7 +128,9 @@ export default function Plan() {
                 {item.icon0 && (
                   <div className="absolute -mt-12">{item.icon0}</div>
                 )}
-                <p className="text-[30px] font-bold px-4">{item.fee}</p>
+                <p className="text-[30px] font-bold px-4">
+                  {item.fee && formatPrice(item.fee)}
+                </p>
                 <p className="text-base ">{item.quote}</p>
                 <ul>
                   {item.benefits.map((item, i) => (
