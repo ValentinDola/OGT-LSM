@@ -3,6 +3,7 @@ import { Montserrat } from "next/font/google";
 import "./globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
 import { ToastProvider } from "@/components/providers/toaster-provider";
+import ConfettiProvider from "@/components/providers/confetti-provider";
 
 const font = Montserrat({ subsets: ["latin"] });
 
@@ -21,6 +22,7 @@ export default function RootLayout({
       <html lang="en">
         <body className={font.className}>
           <ToastProvider />
+          <ConfettiProvider />
           {children}
         </body>
       </html>

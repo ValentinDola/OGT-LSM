@@ -18,6 +18,7 @@ import {
   useUser,
 } from "@clerk/nextjs";
 import { Loader } from "lucide-react";
+import { SearchInput } from "@/components/search-input";
 
 // Define navigation links
 const Routes = [
@@ -43,6 +44,8 @@ export const Header = () => {
   const { isSignedIn, user, isLoaded } = useUser();
 
   const isMentorMode = pathname?.includes("/mentor/");
+  const isPlayerMode = pathname?.includes("/chapter");
+  const isSearchMode = pathname === "/search";
 
   const routes = isMentorMode ? MRoutes : Routes;
 
@@ -201,6 +204,12 @@ export const Header = () => {
                   </li>
                 ))}
             </ul>
+
+            {/* {isSearchMode && (
+              <div className="hidden md:block">
+                <SearchInput />
+              </div>
+            )} */}
 
             {/* Render user info or login/signup links based on authentication status */}
 
