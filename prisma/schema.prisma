@@ -5,7 +5,8 @@
 // Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
 
 generator client {
-  provider = "prisma-client-js"
+  provider        = "prisma-client-js"
+  previewFeatures = ["fullTextSearch", "fullTextIndex"]
 }
 
 datasource db {
@@ -22,11 +23,12 @@ model Course {
   imageUrl    String?
   price       Float?
   isPublished Boolean @default(false)
+  isFree      Boolean @default(false)
 
   categoryId String?   @db.ObjectId
   category   Category? @relation(fields: [categoryId], references: [id])
 
-  Chapter     Chapter[]
+  chapters    Chapter[]
   attachments Attachment[]
   purchases   Purchase[]
 
@@ -34,6 +36,7 @@ model Course {
   updatedAt DateTime @updatedAt
 
   @@index([categoryId])
+  @@fulltext([title])
 }
 
 model Category {
@@ -62,7 +65,7 @@ model Chapter {
   description String?
   videoUrl    String?
   position    Int
-  isPublish   Boolean @default(false)
+  isPublished Boolean @default(false)
   isFree      Boolean @default(false)
 
   muxData MuxData?

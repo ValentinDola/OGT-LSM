@@ -80,6 +80,10 @@
     @apply h-full;
   }
 
+  .ql-container {
+    font-size: 14px !important;
+  }
+
 
 /* Reset default display for structural HTML elements */
 footer,
@@ -424,7 +428,7 @@ p {
   font-weight: 600;
 }
 
-button {
+.button {
   border-radius: 6px;
   cursor: pointer;
   display: inline-block;
@@ -544,8 +548,7 @@ button {
   width: 44px;
 }
 
-.button svg,
-button svg {
+.button svg {
   height: 12px;
   width: 12px;
   fill: currentColor;
@@ -639,8 +642,7 @@ button.button--has-arrow {
   font-weight: 600;
 }
 
-.button,
-button {
+.button {
   border: none;
   border-radius: 6px;
   cursor: pointer;

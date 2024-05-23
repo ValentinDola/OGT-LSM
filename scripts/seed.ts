@@ -10,8 +10,9 @@ async function main() {
             data: [
                 { name: "Currencies" },
                 { name: "Commodities" },
-                { name: "Indices" },
-                {name: "Synthetics"},
+                { name: "Stock Indices" },
+                { name: "Synthetics indices" },
+                {name: "Cryptocurrencies"},
             ]
         })
         console.log("Success");
