@@ -45,7 +45,7 @@ export default function Quotes() {
         </div>
       </div>
       <div className=" relative mt-10 mb-0">
-        <div className=" grid grid-cols-4 gap-4 max-[400px]:grid-cols-1 max-[400px]:mx-6 max-[600px]:grid-cols-1 max-[600px]:mx-6">
+        <div className=" grid grid-cols-4 gap-1 max-[400px]:grid-cols-1 max-[400px]:mx-6 max-[600px]:grid-cols-1 max-[600px]:mx-6">
           {quotes.map((item, i) => (
             <div
               key={i}
