@@ -21,6 +21,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import toast from "react-hot-toast";
+import { Payment } from "../upload/_components/columns";
 
 const formSchema = z.object({
   title: z.string().min(1, {
@@ -94,7 +95,9 @@ export default function Create() {
 
               <div className="flex items-center gap-x-2">
                 <Link href={"/"}>
-                  <Button type="button">Cancel</Button>
+                  <Button variant={"outline"} type="button">
+                    Cancel
+                  </Button>
                 </Link>
                 <Button
                   className="button_auth"

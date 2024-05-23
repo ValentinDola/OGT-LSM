@@ -18,28 +18,34 @@ import {
 import { Input } from "@/components/ui/input";
 import toast from "react-hot-toast";
 import { Button } from "@/components/ui/button";
-import { Pencil } from "lucide-react";
-import { useRouter } from "next/navigation";
-import { Course } from "@prisma/client";
-import { cn } from "@/lib/utils";
-import { formatPrice } from "@/lib/format";
+import { Textarea } from "@/components/ui/textarea";
 
-interface TitleFormProps {
+import { Pencil, Router } from "lucide-react";
+import { useRouter } from "next/navigation";
+import { cn } from "@/lib/utils";
+import { Course } from "@prisma/client";
+
+import { Switch } from "@/components/ui/switch";
+
+interface CoursesAccessFormProps {
   initialData: Course;
   courseId: string;
 }
 
 const formSchema = z.object({
-  price: z.coerce.number(),
+  isFree: z.boolean().default(false),
 });
 
-export const PriceForm = ({ initialData, courseId }: TitleFormProps) => {
+export const CoursesAccessForm = ({
+  initialData,
+  courseId,
+}: CoursesAccessFormProps) => {
   const [isEditing, setIsEditing] = useState(false);
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      price: initialData?.price || undefined,
+      isFree: Boolean(initialData.isFree),
     },
   });
 
@@ -62,28 +68,33 @@ export const PriceForm = ({ initialData, courseId }: TitleFormProps) => {
   return (
     <div className="mt-6 border bg-slate-100 rounded-md p-4">
       <div className="font-medium flex items-center justify-between">
-        Course price
+        Course access
         <Button onClick={toggleEdit} variant={"ghost"}>
           {isEditing ? (
             <>Cancel</>
           ) : (
             <>
               <Pencil className="h-4 w-4 mr-2" />
-              Edit price
+              Edit access
             </>
           )}
         </Button>
       </div>
-      {!isEditing ? (
-        <p
+      {!isEditing && (
+        <div
           className={cn(
             "text-sm mt-2",
-            !initialData.price && "text-stone-500 italic"
+            !initialData.isFree && "text-stone-500 italic"
           )}
         >
-          {initialData.price ? formatPrice(initialData.price) : "No price"}
-        </p>
-      ) : (
+          {initialData.isFree ? (
+            <>This Course is free for preview</>
+          ) : (
+            <>This Course not is free for preview</>
+          )}
+        </div>
+      )}{" "}
+      {isEditing && (
         <Form {...form}>
           <form
             onSubmit={form.handleSubmit(onSubmit)}
@@ -91,19 +102,20 @@ export const PriceForm = ({ initialData, courseId }: TitleFormProps) => {
           >
             <FormField
               control={form.control}
-              name="price"
+              name="isFree"
               render={({ field }) => (
-                <FormItem>
-                  <FormControl>
-                    <Input
-                      type="number"
-                      step={"0.01"}
-                      disabled={isSubmitting}
-                      placeholder="Set Individual price for this course"
-                      {...field}
+                <FormItem className="flex flex-row items-center space-x-3 space-y-0 rounded-md border p-4">
+                  <FormControl className="">
+                    <Switch
+                      checked={field.value}
+                      onCheckedChange={field.onChange}
                     />
                   </FormControl>
-
+                  <div className="space-y-1 leading-none">
+                    <FormDescription>
+                      Switch if you want to make this Course free for preview
+                    </FormDescription>
+                  </div>
                   <FormMessage />
                 </FormItem>
               )}
