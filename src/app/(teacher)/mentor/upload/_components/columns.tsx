@@ -36,13 +36,16 @@ export const columns: ColumnDef<Course>[] = [
     },
   },
   {
-    accessorKey: "price",
-    header: "Price",
+    accessorKey: "isFree",
+    header: "Type",
     cell: ({ row }) => {
-      const price = parseFloat(row.getValue("price") || "0");
-      const formated = formatPrice(price);
+      const isFree = row.getValue("isFree") || false;
 
-      return <Badge>{formated}</Badge>;
+      return (
+        <Badge className={cn("bg-[#77BD8B]", isFree && "bg-[#FF756B]")}>
+          {isFree ? "Free Course" : "Paid Course"}
+        </Badge>
+      );
     },
   },
   {
