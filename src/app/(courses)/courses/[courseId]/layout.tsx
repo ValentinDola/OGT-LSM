@@ -70,7 +70,7 @@ const CourseLayout = async ({
           <CourseNavbar course={course} progressCounter={progressCount} />{" "}
           {/* Render the navbar component with course and progress data */}
           <div>
-            <CourseBar course={course} progressCounter={progressCount}>
+            <CourseBar course={course}>
               {children}{" "}
               {/* Render the CourseBar component with course and progress data and include children components */}
             </CourseBar>
