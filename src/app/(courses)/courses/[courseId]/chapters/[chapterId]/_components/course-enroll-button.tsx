@@ -46,7 +46,7 @@ export const CourseEnrollButton = ({
   // Return the Button component with onClick handler and disabled state based on isLoading
   return (
     <Button onClick={onClick} disabled={isLoading} className={"mt-2 md:w-auto"}>
-      Acheter pour {CfaFormat(price)}
+      Acheter pour {CfaFormat(Number(price))}
     </Button>
   );
 };
