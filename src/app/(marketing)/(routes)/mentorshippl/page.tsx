@@ -106,32 +106,32 @@ export default function MentorshipPlans() {
   const firstName = user?.firstName;
   const lastName = user?.lastName;
 
-  const onSubscription = async (
-    price: number,
-    title: string,
-    quote: string,
-    count: number,
-    i: any
-  ) => {
-    try {
-      setLoadingIndex(i);
-      setIsLoading(true);
+  // const onSubscription = async (
+  //   price: number,
+  //   title: string,
+  //   quote: string,
+  //   count: number,
+  //   i: any
+  // ) => {
+  //   try {
+  //     setLoadingIndex(i);
+  //     setIsLoading(true);
 
-      const response = await axios.post(`/api/create-subscription`, {
-        amount: price,
-        title,
-        quote,
-        count,
-      });
-      const { url } = response.data;
+  //     const response = await axios.post(`/api/create-subscription`, {
+  //       amount: price,
+  //       title,
+  //       quote,
+  //       count,
+  //     });
+  //     const { url } = response.data;
 
-      window.location.assign(url);
-    } catch (error) {
-      toast.error("Something went wrong");
-    } finally {
-      setIsLoading(false);
-    }
-  };
+  //     window.location.assign(url);
+  //   } catch (error) {
+  //     toast.error("Something went wrong");
+  //   } finally {
+  //     setIsLoading(false);
+  //   }
+  // };
 
   const onCreatePlan = async (
     title: string | undefined,
