@@ -2,7 +2,6 @@ import Plan from "@/components/sections/plan";
 import BarsSection from "../../components/sections/barssection";
 import HomeSection from "../../components/sections/homesection";
 import Quotes from "../../components/sections/quotessection";
-import ReturnsSection from "../../components/sections/returnsection";
 
 export default function Home() {
   return (
