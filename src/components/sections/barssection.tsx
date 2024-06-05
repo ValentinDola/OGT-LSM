@@ -4,24 +4,24 @@ export default function BarsSection() {
   return (
     <section className="overflow-hidden pb-0 mt-5">
       <div className="max-w-[1380px] w-full mx-auto my-0 px-5 py-0 ">
-        <div className="grid grid-cols-[54%_1fr] gap-16 max-[600px]:grid-cols-[1fr]">
-          <div className="flex flex-wrap box-border flex-col pt-5 w-full max-[600px]:w-full max-[400px]:p-6">
+        <div className="grid grid-cols-[54%_1fr] gap-16 max-[800px]:grid-cols-[1fr]">
+          <div className="flex flex-wrap box-border flex-col pt-5 w-full max-[800px]:w-full max-[450px]:p-6">
             <h2
               className="w-full opacity-100 -ml-0.5 leading-none mb-4 text-[3rem] tracking-[-3.5px] font-semibold max-[980px]:text-[3.2rem] max-[980px]:tracking-[-4px] max-[600px]:w-[90%] max-[400px]:text-[2.4rem]"
               style={{ visibility: "inherit" }}
             >
-              Free A-Z Courses on{" "}
+              Cours gratuits de A à Z sur{" "}
               <span
                 className="opacity-100 font-extralight italic inline-block"
                 style={{ visibility: "inherit", fontSize: "inherit" }}
               >
-                FX Trading
+                le FX trading
               </span>{" "}
-              from Beginner to Advance
+              du débutant à l'expert
             </h2>
 
             <a href="" className="mt-5 self-start button_auth">
-              View Courses
+              Voir les cours
             </a>
           </div>
           <div className="relative -ml-4">
@@ -167,12 +167,12 @@ export default function BarsSection() {
             >
               <div className="POIntITemCArD">
                 <h6 className="font-semibold text-[1.2rem] tracking-[-1px] m-0">
-                  Market Dynamics ✨
+                  Dynamique du marché ✨
                 </h6>
                 <p className="leading-[1.4] text-[.8rem] text-[#6c82a3] mt-2 mb-0 mx-0">
-                  The price of gold is influenced by factors such as supply and
-                  demand, economic indicators, geopolitical events, and
-                  inflation.
+                  Le prix des paires de devises est influencé par des facteurs
+                  tels que l'offre et la demande, les indicateurs économiques,
+                  les événements géopolitiques et l'inflation.
                 </p>
               </div>
             </div>
@@ -185,11 +185,12 @@ export default function BarsSection() {
             >
               <div className="POIntITemCArD after:content-['2']">
                 <h6 className="font-semibold text-[1.2rem] tracking-[-1px] m-0">
-                  Trading Strategies ✨
+                  Stratégies de Trading ✨
                 </h6>
                 <p className="leading-[1.4] text-[.8rem] text-[#6c82a3] mt-2 mb-0 mx-0">
-                  Traders use various strategies to trade gold, including
-                  long-term investment, trading based on technical analysis
+                  Les traders utilisent diverses stratégies pour trader le
+                  forex, notamment l'investissement à long terme et le trading
+                  basé sur l'analyse technique.
                 </p>
               </div>
             </div>
@@ -202,12 +203,13 @@ export default function BarsSection() {
             >
               <div className="POIntITemCArD after:content-['3']">
                 <h6 className="font-semibold text-[1.2rem] tracking-[-1px] m-0 ">
-                  Risk and Volatility ✨
+                  Risque et Volatilité ✨
                 </h6>
                 <p className="leading-[1.4] text-[.8rem] text-[#6c82a3] mt-2 mb-0 mx-0">
-                  Like any investment, gold trading carries risks. Market
-                  volatility, geopolitical events, and changes in supply and
-                  demand can lead to price fluctuations.
+                  Comme tout investissement, le trading forex comporte des
+                  risques. La volatilité du marché, les événements géopolitiques
+                  et les changements dans l'offre et la demande peuvent
+                  entraîner des fluctuations de prix.
                 </p>
               </div>
             </div>

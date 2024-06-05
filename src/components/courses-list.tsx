@@ -1,13 +1,14 @@
 "use client";
 
-import { useUser } from "@clerk/nextjs";
+import { useAuth, useUser } from "@clerk/nextjs";
 import { Course, Category } from "@prisma/client";
 import { CourseCard } from "./course-card";
+import { useEffect, useState } from "react";
 
 type CourseWithProgressWithCategory = Course & {
   category: Category | null;
   chapters: { id: string }[];
-  progress: number | null;
+  progress: number | undefined;
 };
 
 interface CoursesListProps {
@@ -27,6 +28,7 @@ export const CoursesList = ({ items }: CoursesListProps) => {
             imageUrl={item.imageUrl!}
             chaptersLength={item.chapters.length}
             price={item.price!}
+            isFree={item.isFree}
             progress={item.progress!}
             category={item?.category?.name!}
           />
@@ -34,7 +36,7 @@ export const CoursesList = ({ items }: CoursesListProps) => {
       </div>
       {items?.length === 0 && (
         <div className="text-center text-sm text-muted-foreground mt-10">
-          No courses found
+          Aucun cours trouvé
         </div>
       )}
     </>

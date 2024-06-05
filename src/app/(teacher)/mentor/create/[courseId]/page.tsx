@@ -82,7 +82,7 @@ export default async function Edit({
         <div className="max-w-[1380px] w-full overflow-hidden  mt-[95px]">
           <Banner
             variant={"warning"}
-            label="This course is unpublished. It will not be visible to the students"
+            label="Ce cours n'est pas publié. Il ne sera pas visible pour les étudiants."
           />
         </div>
       )}
@@ -95,10 +95,10 @@ export default async function Edit({
           <div className="flex items-center justify-between">
             <div className="flex flex-col gap-y-2">
               <h1 className="text-[1.7rem] tracking-[-0.064em] font-semibold">
-                Course setup
+                Configuration du cours
               </h1>
               <span className="text-sm">
-                Completed all fields {completionText}
+                Tous les champs ont été remplis {completionText}
               </span>
             </div>
             <CourseActions
@@ -111,7 +111,7 @@ export default async function Edit({
             <div>
               <div className="flex items-center gap-x-2">
                 <IconBadge icon={LayoutDashboard} />
-                <h2 className="text-xl">Customize your course</h2>
+                <h2 className="text-xl">Personnalisez votre cour</h2>
               </div>
               <TitleForm initialData={course} courseId={course.id} />
               <DescriptionForm initialData={course} courseId={course.id} />
@@ -130,14 +130,14 @@ export default async function Edit({
               <div>
                 <div className="flex items-center gap-x-2">
                   <IconBadge icon={ListVideo} />
-                  <h2 className="text-xl">Course chapters</h2>
+                  <h2 className="text-xl">Chapitres du cours</h2>
                 </div>
                 <ChaptersForm initialData={course} courseId={course.id} />
               </div>
               <div>
                 <div className="flex items-center gap-x-2">
                   <IconBadge icon={Banknote} />
-                  <h2 className="text-xl">Course Price</h2>
+                  <h2 className="text-xl">Prix du cours</h2>
                 </div>
                 <PriceForm initialData={course} courseId={course.id} />
               </div>
@@ -145,7 +145,7 @@ export default async function Edit({
               <div>
                 <div className="flex items-center gap-x-2">
                   <IconBadge icon={PackageOpen} />
-                  <h2 className="text-xl">Course attachement</h2>
+                  <h2 className="text-xl">Pièce jointe du cours</h2>
                 </div>
 
                 <AttachmentForm initialData={course} courseId={course.id} />

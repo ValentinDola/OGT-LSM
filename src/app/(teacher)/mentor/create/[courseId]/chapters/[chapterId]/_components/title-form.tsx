@@ -67,14 +67,14 @@ export const ChapterTitleForm = ({
   return (
     <div className="mt-6 border bg-slate-100 rounded-md p-4">
       <div className="font-medium flex items-center justify-between">
-        Chapter title
+        Titre du chapitre
         <Button onClick={toggleEdit} variant={"ghost"}>
           {isEditing ? (
-            <>Cancel</>
+            <>Annuler</>
           ) : (
             <>
               <Pencil className="h-4 w-4 mr-2" />
-              Edit title
+              Modification du titre
             </>
           )}
         </Button>
@@ -111,7 +111,7 @@ export const ChapterTitleForm = ({
                 type="submit"
                 disabled={!isValid || isSubmitting}
               >
-                Save
+                Enregistrer
               </Button>
             </div>
           </form>

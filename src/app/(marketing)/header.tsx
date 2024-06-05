@@ -4,7 +4,7 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import Image from "next/image";
+
 import classnames from "classnames";
 import { Button } from "@/components/ui/button";
 import {
@@ -17,24 +17,36 @@ import {
   SignUpButton,
   useUser,
 } from "@clerk/nextjs";
-import { Loader } from "lucide-react";
-import { SearchInput } from "@/components/search-input";
+import { Languages, Loader } from "lucide-react";
+import { cn } from "@/lib/utils";
+
+import Image from "next/image";
+
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 // Define navigation links
 const Routes = [
-  { name: "Dashboard", href: "/dashboard", user: true },
-  { name: "My Courses", href: "/mycourses", user: true },
-  { name: "Booking", href: "/booking", user: true },
-  { name: "Mentorship Programs", href: "/mentorshippg", user: false },
-  { name: "Mentorship Plans", href: "/mentorshippl", user: false },
+  { name: "Tableau de cours", href: "/dashboard", user: true },
+  { name: "Mes cours", href: "/mycourses", user: true },
+  { name: "Réservation", href: "/booking", user: true },
+  { name: "Programmes", href: "/mentorshippg", user: false },
+  { name: "Plans", href: "/mentorshippl", user: false },
   { name: "Blog", href: "/blog", user: false },
-  { name: "FAQ'S", href: "/faq", user: false },
+  { name: "FAQ", href: "/faq", user: false },
 ];
 
 const MRoutes = [
-  { name: "Create", href: "/mentor/create", user: true },
-  { name: "Uploads", href: "/mentor/upload", user: true },
-  { name: "Analytics", href: "/mentor/analytics", user: true },
+  { name: "Créer", href: "/mentor/create", user: true },
+  { name: "Cours", href: "/mentor/upload", user: true },
+  { name: "Analytique", href: "/mentor/analytics", user: true },
 ];
 
 // Navigation component definition
@@ -44,7 +56,7 @@ export const Header = () => {
   const { isSignedIn, user, isLoaded } = useUser();
 
   const isMentorMode = pathname?.includes("/mentor/");
-  const isPlayerMode = pathname?.includes("/chapter");
+  const isPlayerMode = pathname?.includes("/courses");
   const isSearchMode = pathname === "/search";
 
   const routes = isMentorMode ? MRoutes : Routes;
@@ -82,12 +94,48 @@ export const Header = () => {
   // Component rendering
   return (
     <header
-      className={`GNav ${
-        isMentorMode && "bg-[#1b4942]"
-      } text-xl h-24 flex  items-center px-2 absolute right-0 left-0  z-[100] ${
-        isNavigationSticky && `global-navigation--sticky`
-      } ${isMentorMode && isNavigationSticky && `global-navigation--stickyM`} `}
+      className={cn(
+        "GNav text-xl h-24 flex  items-center px-2 absolute right-0 left-0  z-[100]",
+        isMentorMode && "bg-[#1b4942] z-[100]",
+        isMentorMode && isNavigationSticky && "global-navigation--stickyM",
+        isNavigationSticky &&
+          "fixed bg-[#fff] h-[90px] [box-shadow:0_0_22px_rgba(0,_0,_0,_.1)] animate-[slideInDown_.42s_cubic-bezier(.165,_.84,_.44,_1)]"
+      )}
     >
+      {/* <div className="flex min-[770px]:hidden">
+        <Select>
+          <SelectTrigger className="w-[70px] outline-none">
+            <SelectValue placeholder={<Languages className="h4 w-4" />} />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectGroup>
+              <SelectItem value="fr-FR">
+                <div className="flex items-center justify-center">
+                  <Image
+                    src={"./FR - France.svg"}
+                    width={20}
+                    height={15}
+                    alt="france"
+                    className="rounded-sm mr-2 "
+                  />
+                </div>
+              </SelectItem>
+              <SelectItem value="en-EN">
+                <div className="flex items-center justify-center">
+                  <Image
+                    src={"./US - United States.svg"}
+                    width={20}
+                    height={15}
+                    alt="us"
+                    className="rounded-sm mr-2 "
+                  />
+                </div>
+              </SelectItem>
+            </SelectGroup>
+          </SelectContent>
+        </Select>
+      </div> */}
+
       <div
         className={
           isMobileNavigationTriggered
@@ -120,45 +168,47 @@ export const Header = () => {
               </li>
             ))}
         </ul>
-        <ul className="visible opacity-100 pl-8 pr-0 pt-2.5 pb-0">
-          <ClerkLoading>
-            <Loader
-              color="#fff"
-              className="h-5 w-5 text-muted-foreground animate-spin"
-            />
-          </ClerkLoading>
-          <ClerkLoaded>
-            <SignedIn>
-              <UserButton />
-            </SignedIn>
-            <li className="mt-[18px]">
-              <SignedOut>
-                <SignInButton>
-                  <Button
-                    variant={"link"}
-                    className={"mr-7 text-xl bg-[none] text-[#FFFFFF99]"}
-                  >
-                    LOG IN{" "}
-                  </Button>
-                </SignInButton>
-              </SignedOut>
-            </li>
+        <div>
+          <ul className="visible opacity-100 pl-8 pr-0 pt-2.5 pb-0">
+            <ClerkLoading>
+              <Loader
+                color="#fff"
+                className="h-5 w-5 text-muted-foreground animate-spin"
+              />
+            </ClerkLoading>
+            <ClerkLoaded>
+              <SignedIn>
+                <UserButton />
+              </SignedIn>
+              <li className="mt-[18px]">
+                <SignedOut>
+                  <SignInButton>
+                    <Button
+                      variant={"link"}
+                      className={"mr-7 text-xl bg-[none] text-[#FFFFFF99]"}
+                    >
+                      CONNEXION{" "}
+                    </Button>
+                  </SignInButton>
+                </SignedOut>
+              </li>
 
-            <li className="mt-[18px]">
-              <SignedOut>
-                <SignUpButton>
-                  <Button
-                    variant={"link"}
-                    className={"mr-7 text-xl bg-[none] text-[#FFFFFF99]"}
-                  >
-                    SIGN UP{" "}
-                  </Button>
-                </SignUpButton>
-              </SignedOut>
-            </li>
-          </ClerkLoaded>
-          {/* Sign Up and Log In Routes */}
-        </ul>
+              <li className="mt-[18px]">
+                <SignedOut>
+                  <SignUpButton>
+                    <Button
+                      variant={"link"}
+                      className={"mr-7 text-xl bg-[none] text-[#FFFFFF99]"}
+                    >
+                      INSCRIPTION{" "}
+                    </Button>
+                  </SignUpButton>
+                </SignedOut>
+              </li>
+            </ClerkLoaded>
+            {/* Sign Up and Log In Routes */}
+          </ul>
+        </div>
       </div>
 
       <div className="GNavMCo pl-5 ">
@@ -180,8 +230,8 @@ export const Header = () => {
           </a>
 
           {/* Navigation Routes */}
-          <div className="flex items-center ml w-full ml-20 justify-between max-[600px]:justify-end">
-            <ul className="list-none flex  relative ml-20 mb-1 max-[980px]:hidden">
+          <div className="flex items-center ml w-full ml-20 justify-between">
+            <ul className="list-none hidden relative ml-20 mb-1 min-[1030px]:flex">
               {/* Render navigation Routes */}
               {routes
                 .filter((link) => (isSignedIn ? true : !link.user))
@@ -191,12 +241,14 @@ export const Header = () => {
                       className={`${
                         item.href === pathname
                           ? `${
-                              isMentorMode ? "text-white" : "text-[#0066F5]"
-                            } outline-none uppercase font-bold text-[16px] cursor-pointer`
+                              isMentorMode
+                                ? "text-white pl-1 border-l-2 border-slate-200"
+                                : "text-[#0066F5] pl-1 border-l-2 border-[#0066F5]"
+                            } outline-none uppercase font-bold text-sm cursor-pointer `
                           : `${
                               isMentorMode && "text-white"
-                            } outline-none uppercase text-[14px] cursor-pointer`
-                      } transition hover:font-semibold `}
+                            } outline-none font-semibold uppercase text-sm cursor-pointer`
+                      } transition hover:font-bold `}
                       href={item.href}
                     >
                       {item.name}
@@ -213,7 +265,7 @@ export const Header = () => {
 
             {/* Render user info or login/signup links based on authentication status */}
 
-            <div className="flex justify-between items-center max-[980px]:hidden">
+            <div className=" justify-between hidden items-center min-[1030px]:flex">
               <ClerkLoading>
                 <Loader
                   color="#0066f5"
@@ -229,26 +281,62 @@ export const Header = () => {
                     <Button
                       variant={"link"}
                       className={
-                        "mr-7 text-base bg-[none] text-[#0066f5] shadow-none  max-[980px]:hidden "
+                        "mr-7 text-sm bg-[none] text-[#0066f5] shadow-none  max-[980px]:hidden "
                       }
                     >
-                      Login{" "}
+                      Connexion{" "}
                     </Button>
                   </SignInButton>
                 </SignedOut>
                 <SignedOut>
                   <SignUpButton>
                     <button className={"button_auth  max-[980px]:hidden "}>
-                      Sign Up
+                      Inscription
                     </button>
                   </SignUpButton>
                 </SignedOut>
+
+                {/* <div className="ml-4">
+                  <Select>
+                    <SelectTrigger className="w-[70px] outline-none">
+                      <SelectValue
+                        placeholder={<Languages className="h4 w-4" />}
+                      />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectGroup>
+                        <SelectItem value="fr-FR">
+                          <div className="flex items-center justify-center">
+                            <Image
+                              src={"./FR - France.svg"}
+                              width={20}
+                              height={15}
+                              alt="france"
+                              className="rounded-sm mr-2 "
+                            />
+                          </div>
+                        </SelectItem>
+                        <SelectItem value="en-EN">
+                          <div className="flex items-center justify-center">
+                            <Image
+                              src={"./US - United States.svg"}
+                              width={20}
+                              height={15}
+                              alt="us"
+                              className="rounded-sm mr-2 "
+                            />
+                          </div>
+                        </SelectItem>
+                      </SelectGroup>
+                    </SelectContent>
+                  </Select>
+                </div> */}
               </ClerkLoaded>
             </div>
           </div>
 
           {/* Mobile Navigation Trigger */}
-          <div className=" min-[980px]:hidden max-[980px]:block max-[980px]:opacity-100">
+          <div className="block opacity-100 min-[1030px]:hidden min-[1030px]:opacity-0">
             <div
               onClick={handleMobileNavigationTrigger}
               className={

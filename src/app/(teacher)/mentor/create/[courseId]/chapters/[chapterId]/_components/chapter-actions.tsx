@@ -8,6 +8,7 @@ import Lottie from "react-lottie";
 import * as animationData from "@/assets/loader.json";
 
 import { BadgeXIcon, Trash } from "lucide-react";
+import { HashLoader } from "react-spinners";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import toast from "react-hot-toast";
@@ -84,11 +85,15 @@ export const ChapterActions = ({
   return (
     <div className="flex items-center gap-x-2">
       {isLoading && (
-        <Lottie
-          options={defaultOptions}
-          height={60}
-          width={60}
-          isStopped={!isLoading}
+        // <Lottie
+        //   options={defaultOptions}
+        //   height={60}
+        //   width={60}
+        //   isStopped={!isLoading}
+        // />
+        <HashLoader
+          color="#36d7b7"
+          className={`h-4 w-4 ${!isLoading && `hidden`}`}
         />
       )}
       <Button
@@ -97,11 +102,11 @@ export const ChapterActions = ({
         disabled={disabled || isLoading}
         onClick={onPublish}
       >
-        {isPublished ? "Unpublish" : "Publish"}
+        {isPublished ? "Dépublier" : "Publier"}
       </Button>
       <ConfirmModal onConfirm={onDelete}>
         <Button disabled={isLoading} size={"sm"}>
-          Delete
+          Supprimer
         </Button>
       </ConfirmModal>
     </div>

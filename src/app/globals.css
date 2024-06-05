@@ -204,9 +204,7 @@ p {
 
 .quote-item p {
   
- 
-  
-  color: #000a18;
+color: #000a18;
   position: relative;
 }
 
@@ -240,7 +238,7 @@ p {
   position: fixed;
   background-color: #1b4942;
   height: 90px;
-
+  z-index: 100;
  
   box-shadow: 0 0 22px rgba(0, 0, 0, .1);
   animation: slideInDown .42s cubic-bezier(.165, .84, .44, 1);

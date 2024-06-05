@@ -1,9 +1,7 @@
 "use client";
 
-import { useRouter } from "next/navigation";
-
 import { Category, Course } from "@prisma/client";
-import { CoursesList } from "@/components/courses-list";
+import { FreeCoursesList } from "@/components/free-courses-list";
 
 type CourseWithProgressWithCategory = Course & {
   category: Category | null;
@@ -16,18 +14,17 @@ interface FreeCoursesProps {
 }
 
 export const FreeCourses = ({ items }: FreeCoursesProps) => {
-  const router = useRouter();
   return (
     <div>
       <div className="box-border w-full flex flex-col justify-center items-center text-center  mt-[50px] ">
         <h2 className="text-[2rem] tracking-[-0.064em] font-semibold max-[986px]:text-[3rem] max-[400px]:text-[2rem] max-[600px]:text-[2.3rem]">
-          Free Courses
+          Cours gratuits
         </h2>
       </div>
 
       <div className="box-border w-full flex flex-col justify-start items-start  mt-[50px]">
         <div className="mt-7">
-          <CoursesList items={items} />
+          <FreeCoursesList items={items} />
         </div>
       </div>
     </div>

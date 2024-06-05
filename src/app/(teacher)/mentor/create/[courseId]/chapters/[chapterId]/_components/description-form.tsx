@@ -72,14 +72,14 @@ export const ChapterDescriptionForm = ({
   return (
     <div className="mt-6 border bg-slate-100 rounded-md p-4">
       <div className="font-medium flex items-center justify-between">
-        Chapter description
+        Description du chapitre
         <Button onClick={toggleEdit} variant={"ghost"}>
           {isEditing ? (
-            <>Cancel</>
+            <>Annuler</>
           ) : (
             <>
               <Pencil className="h-4 w-4 mr-2" />
-              Edit Description
+              Modification du description
             </>
           )}
         </Button>
@@ -125,7 +125,7 @@ export const ChapterDescriptionForm = ({
                 type="submit"
                 disabled={!isValid || isSubmitting}
               >
-                Save
+                Enregistrer
               </Button>
             </div>
           </form>

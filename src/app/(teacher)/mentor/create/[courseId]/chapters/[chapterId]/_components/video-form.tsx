@@ -59,19 +59,19 @@ export const ChapterVideoForm = ({
   return (
     <div className="mt-6 border bg-slate-100 rounded-md p-4">
       <div className="font-medium flex items-center justify-between">
-        Course video
+        Video du cour
         <Button onClick={toggleEdit} variant={"ghost"}>
           {isEditing && <>Cancel</>}
           {!isEditing && !initialData.videoUrl && (
             <>
               <Plus className="h-4 w-4 mr-2" />
-              Add video
+              Ajouter une video
             </>
           )}
           {!isEditing && initialData.videoUrl && (
             <>
               <Pencil className="h-4 w-4 mr-2" />
-              Edit video
+              Modification de la video
             </>
           )}
         </Button>
@@ -98,14 +98,14 @@ export const ChapterVideoForm = ({
             }}
           />
           <div className="text-xs text-muted-foreground mt-4">
-            Upload this chapter's video
+            Téléchargez la vidéo de ce chapitre
           </div>
         </div>
       )}
       {initialData.videoUrl && !isEditing && (
         <div className="text-xs text-muted-foreground mt-2">
-          Videos can take a few minutes to process. Refresh the page if video
-          does not appear.
+          Les vidéos peuvent prendre quelques minutes à être traitées.
+          Actualisez la page si la vidéo n'apparaît pas.
         </div>
       )}
     </div>

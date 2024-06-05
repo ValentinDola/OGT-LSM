@@ -14,85 +14,117 @@ const FAQ = () => {
 
   const FAQs = [
     {
-      question: "How can I join the mentorship program?",
-      description: `You're just a click away from joining our mentorship program. ${(
-        <Button variant={"link"} onClick={() => route.push("#mppl")}>
-          Click here to create your account/signin
-        </Button>
-      )} thereafter, join any of the mentorship plan.`,
+      question: "Comment puis-je rejoindre le programme de mentorat ?",
+      description: (
+        <>
+          Vous êtes à un clic de rejoindre notre programme de mentorat.
+          <Button variant="link" onClick={() => route.push("#mppl")}>
+            Cliquez ici pour créer votre compte / se connecter
+          </Button>
+          ensuite, rejoignez l'un des plans de mentorat.
+        </>
+      ),
     },
     {
-      question: "I've paid for the mentorship, what's next?",
-      description: `We're excited to have you in the mentorship! After your payment, watch your inbox for an email titled "Your OGT Academy mentorship order has been received." In this email, you'll find all the access links to the mentorship course and groups: WhatsApp (for three, six and twelve months) or Telegram (for one month). But if you don't see it within an hour of your payment, don't worry. Simply forward your proof of payment and registered email address to ${(
-        <p>
-          <a href="mailto:support@OGTacademy.com">support@OGTacademy.com</a>
-        </p>
-      )} , and our team will assist you promptly.`,
+      question: "J'ai payé pour le mentorat, que faire ensuite ?",
+      description: (
+        <>
+          Nous sommes ravis de vous accueillir dans le mentorat ! Après votre
+          paiement, surveillez votre boîte de réception pour un email intitulé
+          "Votre commande de mentorat OGT Academy a été reçue." Dans cet email,
+          vous trouverez tous les liens d'accès au cours de mentorat et aux
+          groupes : WhatsApp (pour trois, six et douze mois) ou Telegram (pour
+          un mois). Mais si vous ne le voyez pas dans l'heure suivant votre
+          paiement, ne vous inquiétez pas. Envoyez simplement votre preuve de
+          paiement et votre adresse email enregistrée à{" "}
+          <span>
+            <a href="mailto:support@OGTacademy.com">support@OGTacademy.com</a>
+          </span>
+          , et notre équipe vous assistera rapidement.
+        </>
+      ),
     },
     {
-      question: "Is it a lifetime mentorship?",
+      question: "Est-ce un mentorat à vie ?",
       description:
-        "No, it is not. Our mentorship is subscription-based. We offer monthly, three-month, six-month and yearly mentorship subscriptions that can be renewed upon expiration.",
+        "Non, ce n'est pas le cas. Notre mentorat est basé sur un abonnement. Nous proposons des abonnements de mentorat mensuels, trimestriels, semestriels et annuels qui peuvent être renouvelés à expiration.",
     },
     {
       question:
-        "Can I pay for the Mentorship program now but start a month later?",
-      description: `Yes, you can. After you have made the payment forward your proof of payment and registered email address to ${(
-        <p>
-          <a href="mailto:support@OGTacademy.com">support@OGTacademy.com</a>
-        </p>
-      )} and the date you want to commence your mentorship.`,
+        "Puis-je payer pour le programme de mentorat maintenant mais commencer un mois plus tard ?",
+      description: (
+        <>
+          Oui, vous pouvez. Après avoir effectué le paiement, envoyez votre
+          preuve de paiement et votre adresse email enregistrée à{" "}
+          <span>
+            <a href="mailto:support@OGTacademy.com">support@OGTacademy.com</a>
+          </span>
+          et la date à laquelle vous souhaitez commencer votre mentorat.
+        </>
+      ),
     },
     {
-      question: "Do you accept students from other states or countries?",
+      question: "Acceptez-vous des étudiants d'autres États ou pays ?",
       description:
-        "Yes, we do. Our mentorship classes are held online and we accept students from every corner of the globe. Our virtual classes make it easy to participate from anywhere. And if you miss any live class – the recordings are easily and readily accessible on our website.",
+        "Oui, nous acceptons. Nos cours de mentorat se tiennent en ligne et nous acceptons des étudiants de tous les coins du monde. Nos cours virtuels facilitent la participation de n'importe où. Et si vous manquez un cours en direct, les enregistrements sont facilement et rapidement accessibles sur notre site web.",
     },
     {
-      question: "As a beginner, how do I start with you?",
-      description: `We're thrilled to be part of your forex success. OGT Academy offers comprehensive education suitable for traders of all levels, and our classes are beginner-friendly. ${(
-        <Button variant={"link"} onClick={() => route.push("/")}>
-          SignIn to your Account
-        </Button>
-      )} to get started the right way.`,
+      question: "En tant que débutant, comment puis-je commencer avec vous ?",
+      description: (
+        <>
+          Nous sommes ravis de faire partie de votre succès en forex. OGT
+          Academy propose une éducation complète adaptée aux traders de tous
+          niveaux, et nos cours sont adaptés aux débutants.
+          <Button variant="link" onClick={() => route.push("/")}>
+            Connectez-vous à votre compte
+          </Button>
+          pour bien commencer.
+        </>
+      ),
     },
     {
-      question: "Do you provide trade signals to your mentees?",
+      question: "Fournissez-vous des signaux de trading à vos mentorés ?",
       description:
-        "Yes, we do! It is one of the bonuses included in the mentorship.",
+        "Oui, nous le faisons ! C'est l'un des bonus inclus dans le mentorat.",
     },
     {
-      question: "Can I make payments in instalments?",
+      question: "Puis-je payer en plusieurs fois ?",
       description:
-        "At this time, our mentorship program doesn't offer installment payments. We've designed it to provide you with comprehensive forex trading education and support.",
+        "Pour l'instant, notre programme de mentorat ne propose pas de paiements échelonnés. Nous l'avons conçu pour vous fournir une éducation et un soutien complets en trading forex.",
     },
     {
-      question: "Which broker do you recommend?",
-      description: `Our recommended brokers are: ${(
-        <p>
-          <a href="https://www.exness.com/">Exness</a>
-        </p>
-      )} `,
-    },
-    {
-      question: "Do you accept investments or trade on behalf of others?",
-      description:
-        "We focus on education and training. We do accept investments or trade on behalf of others.",
+      question: "Quel courtier recommandez-vous ?",
+      description: (
+        <>
+          Nos courtiers recommandés sont :{" "}
+          <span>
+            <a href="https://www.exness.com/">Exness</a>
+          </span>
+        </>
+      ),
     },
     {
       question:
-        "Do you offer one-on-one physical training besides online training?",
-      description: "No, we do not. All our classes are conducted virtually.",
+        "Acceptez-vous des investissements ou tradez-vous pour le compte d'autres personnes ?",
+      description:
+        "Nous nous concentrons sur l'éducation et la formation. Nous n'acceptons pas d'investissements ni ne tradons pour le compte d'autres personnes.",
     },
     {
-      question: "Do you have a trading floor?",
+      question:
+        "Offrez-vous une formation physique en tête-à-tête en plus de la formation en ligne ?",
       description:
-        "No, we do not. However, we have an office for inquiry purposes. Our office is located on Birelly Street Villa 404, Old Ashongman Agbogba, Accra.",
+        "Non, nous ne le faisons pas. Tous nos cours sont dispensés virtuellement.",
     },
     {
-      question: "What if my question isn't answered during an online session?",
+      question: "Avez-vous une salle de trading ?",
       description:
-        "Our support groups function as extensions of our classes, where you can direct your questions at any time. Be rest assured that you'll receive a satisfactory response, much like you would during our live classes.",
+        "Non, nous n'en avons pas. Cependant, nous avons un bureau pour les demandes de renseignements. Notre bureau est situé à Birelly Street Villa 404, Old Ashongman Agbogba, Accra.",
+    },
+    {
+      question:
+        "Que se passe-t-il si ma question n'est pas répondue lors d'une session en ligne ?",
+      description:
+        "Nos groupes de soutien fonctionnent comme des extensions de nos cours, où vous pouvez poser vos questions à tout moment. Soyez assuré que vous recevrez une réponse satisfaisante, tout comme lors de nos cours en direct.",
     },
   ];
 
@@ -101,10 +133,11 @@ const FAQ = () => {
       <div className="my-0 px-5 py-0">
         <div className="box-border w-full flex flex-col justify-center items-center gap-4 text-center">
           <h2 className="text-[3rem] tracking-[-0.064em] font-semibold max-[986px]:text-[3rem] max-[400px]:text-[2rem] max-[600px]:text-[2.3rem]">
-            Frequently asked questions
+            Questions fréquemment posées
           </h2>
-          <h2 className="text-[1rem] tracking-[-0.064em] font-semibold max-[986px]:text-[3rem] max-[400px]:text-[1rem] max-[600px]:text-[1.2rem]">
-            Everything you need to know about firepips and its mentorship plans.
+          <h2 className="text-[1rem] tracking-[-0.064em] font-semibold max-[986px]:text-[3rem] max-sm:text-[1rem] ">
+            Tout ce que vous devez savoir sur l'OGT Academy et ses plans de
+            mentorat.
           </h2>
         </div>
       </div>
@@ -115,7 +148,7 @@ const FAQ = () => {
               <AccordionTrigger className="font-semibold text-lg">
                 {item.question}
               </AccordionTrigger>
-              <AccordionContent className="text-[14px]">
+              <AccordionContent className="text-sm">
                 {item.description}
               </AccordionContent>
             </AccordionItem>

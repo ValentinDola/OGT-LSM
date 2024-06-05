@@ -29,7 +29,7 @@ export const columns: ColumnDef<Course>[] = [
           variant="ghost"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
-          Title
+          Titre
           <ArrowUpDown className="ml-2 h-4 w-4" />
         </Button>
       );
@@ -42,8 +42,8 @@ export const columns: ColumnDef<Course>[] = [
       const isFree = row.getValue("isFree") || false;
 
       return (
-        <Badge className={cn("bg-[#77BD8B]", isFree && "bg-[#FF756B]")}>
-          {isFree ? "Free Course" : "Paid Course"}
+        <Badge className={cn("bg-[#231F20]", isFree && "bg-[#939598]")}>
+          {isFree ? "Cours gratuit" : "Cours payant"}
         </Badge>
       );
     },
@@ -66,7 +66,7 @@ export const columns: ColumnDef<Course>[] = [
 
       return (
         <Badge className={cn("bg-slate-500", isPublished && "bg-sky-700")}>
-          {isPublished ? "Published" : "Draft"}
+          {isPublished ? "Publié" : "Brouillon"}
         </Badge>
       );
     },
@@ -88,7 +88,7 @@ export const columns: ColumnDef<Course>[] = [
             <Link href={`/mentor/create/${id}`}>
               <DropdownMenuItem>
                 <Pencil className="h-4 w-4 mr-2" />
-                Edit
+                Modifier
               </DropdownMenuItem>
             </Link>
           </DropdownMenuContent>

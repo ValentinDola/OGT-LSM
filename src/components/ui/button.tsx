@@ -14,20 +14,21 @@ const buttonVariants = cva(
         //   "bg-destructive text-destructive-foreground hover:bg-destructive/90",
         outline:
           "border border-input bg-background hover:bg-accent hover:text-accent-foreground",
+        success: "bg-emerald-600 text-white hover:bg-emerald-600/80",
         // secondary:
         //   "bg-secondary text-secondary-foreground hover:bg-secondary/80",
         ghost: "hover:bg-accent hover:text-accent-foreground",
         link: "text-primary underline-offset-4 hover:underline",
         //default: "",
-        primary:
-          "bg-sky-400 text-primary-foreground hover:bg-sky-400/90 border-sky-500 border-b-4 active:border-b-0",
-        primary_outline: "bg-white text-sky-500 hover:bg-slate-100",
-        secondary:
-          "bg-green-500 text-primary-foreground hover:bg-green-500/90 border-green-600 border-b-4 active:border-b-0",
-        secondary_outline: "bg-white text-green-500 hover:bg-slate-100",
-        danger:
-          "bg-rose-500 text-primary-foreground hover:bg-rose-500/90 border-rose-600 border-b-4 active:border-b-0",
-        danger_outline: "bg-white text-rose-500 hover:bg-slate-100",
+        //primary:
+        //"bg-sky-400 text-primary-foreground hover:bg-sky-400/90 border-sky-500 border-b-4 active:border-b-0",
+        //primary_outline: "bg-white text-sky-500 hover:bg-slate-100",
+        //secondary:
+        //  "bg-green-500 text-primary-foreground hover:bg-green-500/90 border-green-600 border-b-4 active:border-b-0",
+        //secondary_outline: "bg-white text-green-500 hover:bg-slate-100",
+        //danger:
+        // "bg-rose-500 text-primary-foreground hover:bg-rose-500/90 border-rose-600 border-b-4 active:border-b-0",
+        //danger_outline: "bg-white text-rose-500 hover:bg-slate-100",
       },
       size: {
         default: "h-10 px-4 py-2",

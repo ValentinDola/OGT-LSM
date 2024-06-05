@@ -56,10 +56,10 @@ const EditChapter = async ({
   return (
     <>
       {!chapter?.isPublished && (
-        <div className="max-w-[1380px] w-full overflow-hidden  mt-[95px]">
+        <div className="max-w-[1380px] w-full overflow-hidden mt-[95px]">
           <Banner
             variant={"warning"}
-            label="This chapter is unpublished. It will not be visible in the course"
+            label="Ce chapitre n'est pas publié. Il ne sera pas visible dans le cours."
           />
         </div>
       )}
@@ -77,15 +77,15 @@ const EditChapter = async ({
                 className="flex items-center text-sm hover:opacity-75 transition mb-6 cursor-pointer"
               >
                 <MoveLeft className="h6 w-6 mr-6" />
-                Back to course setup
+                Retour à la configuration du cours
               </Link>
               <div className="flex items-center justify-between w-full">
                 <div className="flex flex-col gap-y-2">
                   <h1 className="text-[1.7rem] tracking-[-0.064em] font-semibold">
-                    Chapter creation
+                    Création de chapitre
                   </h1>
                   <span className="text-sm">
-                    Completed all fields {completionText}
+                    Tous les champs ont été remplis {completionText}
                   </span>
                 </div>
                 <ChapterActions
@@ -102,7 +102,7 @@ const EditChapter = async ({
               <div>
                 <div className="flex items-center gap-x-2">
                   <IconBadge icon={LayoutDashboard} />
-                  <h2 className="text-xl">Customize your chapter</h2>
+                  <h2 className="text-xl">Personnalisez votre chapitre</h2>
                 </div>
                 <ChapterTitleForm
                   initialData={chapter}

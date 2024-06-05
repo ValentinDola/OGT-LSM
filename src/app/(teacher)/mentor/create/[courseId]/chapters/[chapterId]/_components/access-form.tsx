@@ -74,14 +74,14 @@ export const ChapterAccessForm = ({
   return (
     <div className="mt-6 border bg-slate-100 rounded-md p-4">
       <div className="font-medium flex items-center justify-between">
-        Chapter access
+        Accès au chapitre
         <Button onClick={toggleEdit} variant={"ghost"}>
           {isEditing ? (
-            <>Cancel</>
+            <>Annuler</>
           ) : (
             <>
               <Pencil className="h-4 w-4 mr-2" />
-              Edit access
+              Accès en modification
             </>
           )}
         </Button>
@@ -94,9 +94,9 @@ export const ChapterAccessForm = ({
           )}
         >
           {initialData.isFree ? (
-            <>This chapter is free for preview</>
+            <>Ce chapitre est gratuit pour un aperçu</>
           ) : (
-            <>This chapter not is free for preview</>
+            <>Ce chapitre n'est pas gratuit pour un aperçu</>
           )}
         </div>
       )}{" "}
@@ -119,7 +119,8 @@ export const ChapterAccessForm = ({
                   </FormControl>
                   <div className="space-y-1 leading-none">
                     <FormDescription>
-                      Switch if you want to make this chapter free for preview
+                      Changez si vous souhaitez rendre ce chapitre gratuit pour
+                      un aperçu
                     </FormDescription>
                   </div>
                   <FormMessage />
@@ -133,7 +134,7 @@ export const ChapterAccessForm = ({
                 type="submit"
                 disabled={!isValid || isSubmitting}
               >
-                Save
+                Enregistrer
               </Button>
             </div>
           </form>

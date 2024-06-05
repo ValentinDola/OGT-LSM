@@ -1,14 +1,14 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
-import { useUser } from "@clerk/nextjs";
-import { useRouter } from "next/navigation";
-import Link from "next/link";
+import { Button } from "@/components/ui/button"; // Importing the Button component
+import { useUser } from "@clerk/nextjs"; // Importing the useUser hook from Clerk for user authentication
+import { useRouter } from "next/navigation"; // Importing the useRouter hook from Next.js for navigation
+import Link from "next/link"; // Importing the Link component from Next.js for client-side navigation
 
-import * as z from "zod";
-import axios from "axios";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
+import * as z from "zod"; // Importing zod for schema validation
+import axios from "axios"; // Importing axios for making HTTP requests
+import { useForm } from "react-hook-form"; // Importing useForm hook for form management
+import { zodResolver } from "@hookform/resolvers/zod"; // Importing zodResolver for zod schema validation with react-hook-form
 
 import {
   Form,
@@ -18,61 +18,51 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import toast from "react-hot-toast";
-import { Payment } from "../upload/_components/columns";
+} from "@/components/ui/form"; // Importing form-related components from the UI library
+import { Input } from "@/components/ui/input"; // Importing the Input component from the UI library
+import toast from "react-hot-toast"; // Importing the toast function from react-hot-toast for displaying notifications
 
 const formSchema = z.object({
   title: z.string().min(1, {
     message: "Title is required",
   }),
-});
+}); // Defining a zod schema for form validation
 
 export default function Create() {
-  const router = useRouter();
-  const { user, isLoaded, isSignedIn } = useUser();
+  const router = useRouter(); // Initializing the router object for navigation
+  const { user, isLoaded, isSignedIn } = useUser(); // Destructuring user, isLoaded, and isSignedIn from useUser hook
 
   const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
+    resolver: zodResolver(formSchema), // Configuring the form with zod schema validation
     defaultValues: {
       title: "",
     },
-  });
+  }); // Initializing the form object with useForm hook
 
-  const { isSubmitting, isValid } = form.formState;
+  const { isSubmitting, isValid } = form.formState; // Destructuring isSubmitting and isValid from form.formState
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
-      const response = await axios.post("/api/courses", values);
-      router.push(`/mentor/create/${response.data.id}`);
-      toast.success("The course has been created");
+      const response = await axios.post("/api/courses", values); // Making a POST request to create a new course
+      router.push(`/mentor/create/${response.data.id}`); // Navigating to the newly created course page
+      toast.success("The course has been created"); // Showing a success toast notification
     } catch (error) {
-      toast.error("Something went wrong");
+      toast.error("Something went wrong"); // Showing an error toast notification
     }
-  };
+  }; // Function to handle form submission
 
   return (
     <section className="max-w-[1380px] w-full mx-auto overflow-hidden  mt-[100px] mb-10">
       <div className="my-0 px-5 py-0">
-        {/* <div className="box-border w-full flex flex-col justify-start items-start gap-4 ">
-          <h2 className="text-[3rem] tracking-[-0.064em] font-semibold max-[986px]:text-[3rem] max-[400px]:text-[2rem] max-[600px]:text-[2.3rem]">
-            Howdy, Mentor {user?.username}
-          </h2>
-        </div> */}
+        {/* Content removed for brevity */}
         <div className="max-w-5xl mx-auto flex flex-col md:items-center md:justify-center h-full p-6">
-          <h1 className="text-[1.3rem] tracking-[-0.064em] font-semibold">
-            Name your course
-          </h1>
-          <p className="text-sm text-slate-600">
-            What would you like to name your course? Don't worry, you can change
-            this later.
-          </p>
+          {/* Content removed for brevity */}
           <Form {...form}>
             <form
               onSubmit={form.handleSubmit(onSubmit)}
               className="space-y-8 mt-8"
             >
+              {/* Form fields */}
               <FormField
                 control={form.control}
                 name="title"
@@ -87,16 +77,16 @@ export default function Create() {
                         {...field}
                       />
                     </FormControl>
-
                     <FormMessage />
                   </FormItem>
                 )}
               />
 
+              {/* Form buttons */}
               <div className="flex items-center gap-x-2">
                 <Link href={"/"}>
                   <Button variant={"outline"} type="button">
-                    Cancel
+                    Annuler
                   </Button>
                 </Link>
                 <Button
@@ -104,7 +94,7 @@ export default function Create() {
                   type="submit"
                   disabled={!isValid || isSubmitting}
                 >
-                  Continue
+                  Continuer
                 </Button>
               </div>
             </form>

@@ -1,19 +1,30 @@
-"use client";
+import { auth } from "@clerk/nextjs/server";
+import { redirect } from "next/navigation";
+import { getAnalytics } from "../../../../../actions/get-analytics";
+import { DataCard } from "./_components/data-card";
+import { Chart } from "./_components/chart";
 
-import { useUser } from "@clerk/nextjs";
-import { useRouter } from "next/navigation";
+export default async function Analytics() {
+  const { userId } = auth();
 
-export default function Uplaod() {
-  const router = useRouter();
-  const { user, isLoaded, isSignedIn } = useUser();
+  if (!userId) {
+    return redirect("/");
+  }
+
+  const { data, totalRevenue, totalSales } = await getAnalytics(userId);
+
   return (
     <section className="max-w-[1380px] w-full mx-auto overflow-hidden  mt-[100px] mb-10">
       <div className="my-0 px-5 py-0">
-        <div className="box-border w-full flex flex-col justify-start items-start gap-4 ">
-          <h2 className="text-[3rem] tracking-[-0.064em] font-semibold max-[986px]:text-[3rem] max-[400px]:text-[2rem] max-[600px]:text-[2.3rem]">
-            Howdy, Mentor {user?.username}
-          </h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+          <DataCard
+            label={"Revenu total"}
+            value={totalRevenue}
+            shouldFormat={true}
+          />
+          <DataCard label={"Ventes totales"} value={totalSales} />
         </div>
+        <Chart data={data} />
       </div>
     </section>
   );

@@ -4,124 +4,179 @@
 // Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
 // Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
 
+// Define a Prisma generator to create a Prisma client with certain features enabled.
 generator client {
-  provider        = "prisma-client-js"
-  previewFeatures = ["fullTextSearch", "fullTextIndex"]
+  provider        = "prisma-client-js" // The provider for the Prisma client generator is JavaScript.
+  previewFeatures = ["fullTextSearch", "fullTextIndex"] // Enables preview features for full-text search and full-text index.
 }
 
+// Define the data source for Prisma, specifying the database connection.
 datasource db {
-  provider     = "mongodb"
-  url          = env("DATABASE_URL")
-  relationMode = "prisma"
+  provider     = "mongodb" // The database provider is MongoDB.
+  url          = env("DATABASE_URL") // The database URL is read from an environment variable.
+  relationMode = "prisma" // Use Prisma's relation mode for MongoDB.
 }
 
+// Define the Course model, which maps to a collection in MongoDB.
 model Course {
-  id          String  @id @default(auto()) @map("_id") @db.ObjectId
-  userId      String
-  title       String
-  description String?
-  imageUrl    String?
-  price       Float?
-  isPublished Boolean @default(false)
-  isFree      Boolean @default(false)
+  id           String  @id @default(auto()) @map("_id") @db.ObjectId // Unique identifier for each course, mapped to MongoDB's ObjectId.
+  userId       String // ID of the user who created the course.
+  title        String // Title of the course.
+  description  String? // Optional description of the course.
+  imageUrl     String? // Optional image URL for the course.
+  price        Float? // Optional price of the course.
+  isPublished  Boolean @default(false) // Indicates if the course is published.
+  isFree       Boolean @default(false) // Indicates if the course is free.
+  isSubscribed Boolean @default(false) // Indicates if the course is part of a subscription.
 
-  categoryId String?   @db.ObjectId
-  category   Category? @relation(fields: [categoryId], references: [id])
+  categoryId String?   @db.ObjectId // Optional reference to the category of the course.
+  category   Category? @relation(fields: [categoryId], references: [id]) // Defines the relation to the Category model.
 
-  chapters    Chapter[]
-  attachments Attachment[]
-  purchases   Purchase[]
+  chapters     Chapter[] // One-to-many relation with the Chapter model.
+  attachments  Attachment[] // One-to-many relation with the Attachment model.
+  purchases    Purchase[] // One-to-many relation with the Purchase model.
+  userProgress UserProgress[] // One-to-many relation with the UserProgress model.
 
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  createdAt DateTime @default(now()) // Timestamp for when the course was created.
+  updatedAt DateTime @updatedAt // Timestamp for when the course was last updated.
 
-  @@index([categoryId])
-  @@fulltext([title])
+  @@index([categoryId]) // Index on categoryId for faster queries.
+  @@fulltext([title]) // Full-text index on the title field for search.
 }
 
+// Define the Category model, representing a category of courses.
 model Category {
-  id      String   @id @default(auto()) @map("_id") @db.ObjectId
-  name    String   @unique
-  courses Course[]
+  id      String   @id @default(auto()) @map("_id") @db.ObjectId // Unique identifier for each category, mapped to MongoDB's ObjectId.
+  name    String   @unique // Name of the category, must be unique.
+  courses Course[] // One-to-many relation with the Course model.
 }
 
+// Define the Attachment model, representing files attached to a course.
 model Attachment {
-  id   String @id @default(auto()) @map("_id") @db.ObjectId
-  name String
-  url  String
+  id   String @id @default(auto()) @map("_id") @db.ObjectId // Unique identifier for each attachment, mapped to MongoDB's ObjectId.
+  name String // Name of the attachment.
+  url  String // URL of the attachment.
 
-  courseId String @db.ObjectId
-  course   Course @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  courseId String @db.ObjectId // Reference to the course the attachment belongs to.
+  course   Course @relation(fields: [courseId], references: [id], onDelete: Cascade) // Defines the relation to the Course model with cascade delete.
 
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  createdAt DateTime @default(now()) // Timestamp for when the attachment was created.
+  updatedAt DateTime @updatedAt // Timestamp for when the attachment was last updated.
 
-  @@index([courseId])
+  @@index([courseId]) // Index on courseId for faster queries.
 }
 
+// Define the Chapter model, representing chapters within a course.
 model Chapter {
-  id          String  @id @default(auto()) @map("_id") @db.ObjectId
-  title       String
-  description String?
-  videoUrl    String?
-  position    Int
-  isPublished Boolean @default(false)
-  isFree      Boolean @default(false)
+  id          String  @id @default(auto()) @map("_id") @db.ObjectId // Unique identifier for each chapter, mapped to MongoDB's ObjectId.
+  title       String // Title of the chapter.
+  description String? // Optional description of the chapter.
+  videoUrl    String? // Optional URL for the chapter's video.
+  position    Int // Position of the chapter in the course.
+  isPublished Boolean @default(false) // Indicates if the chapter is published.
+  isFree      Boolean @default(false) // Indicates if the chapter is free.
 
-  muxData MuxData?
+  muxData MuxData? // Optional relation to the MuxData model for video data.
 
-  courseId String @db.ObjectId
-  course   Course @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  courseId String @db.ObjectId // Reference to the course the chapter belongs to.
+  course   Course @relation(fields: [courseId], references: [id], onDelete: Cascade) // Defines the relation to the Course model with cascade delete.
 
-  userProgress UserProgress[]
+  userProgress UserProgress[] // One-to-many relation with the UserProgress model.
 
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  createdAt DateTime @default(now()) // Timestamp for when the chapter was created.
+  updatedAt DateTime @updatedAt // Timestamp for when the chapter was last updated.
 }
 
+// Define the MuxData model, representing video data for chapters.
 model MuxData {
-  id         String  @id @default(auto()) @map("_id") @db.ObjectId
-  assetId    String
-  playbackId String?
+  id         String  @id @default(auto()) @map("_id") @db.ObjectId // Unique identifier for each MuxData, mapped to MongoDB's ObjectId.
+  assetId    String // Asset ID from Mux.
+  playbackId String? // Optional playback ID from Mux.
 
-  chapterId String  @unique @db.ObjectId
-  chapter   Chapter @relation(fields: [chapterId], references: [id], onDelete: Cascade)
+  chapterId String  @unique @db.ObjectId // Unique reference to the chapter the MuxData belongs to.
+  chapter   Chapter @relation(fields: [chapterId], references: [id], onDelete: Cascade) // Defines the relation to the Chapter model with cascade delete.
 }
 
+// Define the UserProgress model, representing user's progress in chapters.
 model UserProgress {
-  id     String @id @default(auto()) @map("_id") @db.ObjectId
-  userId String
+  id     String @id @default(auto()) @map("_id") @db.ObjectId // Unique identifier for each UserProgress, mapped to MongoDB's ObjectId.
+  userId String // ID of the user.
 
-  chapterId String  @db.ObjectId
-  chapter   Chapter @relation(fields: [chapterId], references: [id], onDelete: Cascade)
+  courseId String @db.ObjectId // Reference to the course the progress belongs to.
+  course   Course @relation(fields: [courseId], references: [id], onDelete: Cascade) // Defines the relation to the Course model with cascade delete.
 
-  isCompleted Boolean @default(false)
+  chapterId String  @db.ObjectId // Reference to the chapter the progress belongs to.
+  chapter   Chapter @relation(fields: [chapterId], references: [id], onDelete: Cascade) // Defines the relation to the Chapter model with cascade delete.
 
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  isCompleted Boolean @default(false) // Indicates if the user has completed the chapter.
 
-  @@unique([userId, chapterId])
-  @@index([chapterId])
+  createdAt DateTime @default(now()) // Timestamp for when the progress was created.
+  updatedAt DateTime @updatedAt // Timestamp for when the progress was last updated.
+
+  @@unique([userId, chapterId, courseId]) // Unique constraint on the combination of userId, chapterId, and courseId.
+  @@index([chapterId]) // Index on chapterId for faster queries.
 }
 
+// Define the Subscription model, representing subscriptions of users.
+model Subscription {
+  id     String  @id @default(auto()) @map("_id") @db.ObjectId // Unique identifier for each subscription, mapped to MongoDB's ObjectId.
+  userId String // ID of the user.
+  status String // Status of the subscription.
+  phone  String? // Optional phone number of the user.
+
+  subscriptionId String @unique // Unique subscription ID.
+
+  createdAt DateTime @default(now()) // Timestamp for when the subscription was created.
+  updatedAt DateTime @updatedAt // Timestamp for when the subscription was last updated.
+}
+
+// Define the Purchase model, representing purchases of courses by users.
 model Purchase {
-  id     String @id @default(auto()) @map("_id") @db.ObjectId
-  userId String
+  id     String  @id @default(auto()) @map("_id") @db.ObjectId // Unique identifier for each purchase, mapped to MongoDB's ObjectId.
+  userId String // ID of the user.
+  phone  String? // Optional phone number of the user.
 
-  courseId String @db.ObjectId
-  course   Course @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  courseId String @db.ObjectId // Reference to the course that was purchased.
+  course   Course @relation(fields: [courseId], references: [id], onDelete: Cascade) // Defines the relation to the Course model with cascade delete.
 
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  createdAt DateTime @default(now()) // Timestamp for when the purchase was created.
+  updatedAt DateTime @updatedAt // Timestamp for when the purchase was last updated.
 
-  @@index([courseId])
+  @@unique([userId, courseId]) // Unique constraint on the combination of userId and courseId.
+  @@index([courseId]) // Index on courseId for faster queries.
 }
 
-model StripeCustomer {
-  id               String @id @default(auto()) @map("_id") @db.ObjectId
-  userId           String
-  stripeCustomerId String @unique
+// Define the StripeCustomer model, representing Stripe customer data for users.
+model PaymentCustomer {
+  id         String @id @default(auto()) @map("_id") @db.ObjectId // Unique identifier for each StripeCustomer, mapped to MongoDB's ObjectId.
+  userId     String // ID of the user.
+  customerId String @unique // Unique  customer ID.
 
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  createdAt DateTime @default(now()) // Timestamp for when the Stripe customer was created.
+  updatedAt DateTime @updatedAt // Timestamp for when the Stripe customer was last updated.
 }
+
+// Define the StripeSubsCustomer model, representing subscription data for Stripe customers.
+model SubscriptionCustomer {
+  id         String @id @default(auto()) @map("_id") @db.ObjectId // Unique identifier for each StripeSubsCustomer, mapped to MongoDB's ObjectId.
+  userId     String // ID of the user.
+  customerId String @unique // Unique Stripe customer ID.
+
+  createdAt DateTime @default(now()) // Timestamp for when the Stripe subscription customer was created.
+  updatedAt DateTime @updatedAt // Timestamp for when the Stripe subscription customer was last updated.
+}
+
+// Explanation:
+// Generator Block: Configures the Prisma client generator with preview features for full-text search and full-text indexing.
+// Datasource Block: Defines the MongoDB datasource, specifying the provider, connection URL, and relation mode.
+// Models: Represent different collections in the MongoDB database, with fields defining the structure and relationships:
+// Course: Represents a course with fields like title, description, price, etc., and relations to categories, chapters, attachments, purchases, and user progress.
+// Category: Represents a category of courses with a unique name and a relation to courses.
+// Attachment: Represents files attached to a course, with relations to courses.
+// Chapter: Represents chapters within a course, with fields for title, description, video URL, etc., and relations to courses and user progress.
+// MuxData: Represents video data for chapters, with fields for asset ID and playback ID, and a relation to chapters.
+// UserProgress: Represents a user's progress in chapters, with fields for completion status and relations to courses and chapters.
+// Subscription: Represents subscriptions of users, with fields for status and Stripe customer ID.
+// Purchase: Represents purchases of courses by users, with fields for user ID, phone, and relations to courses.
+// StripeCustomer and StripeSubsCustomer: Represent Stripe customer data for users, with fields for Stripe customer ID.
+// Each model includes fields for data attributes, relations to other models, and constraints like unique indexes and default values.

@@ -1,4 +1,7 @@
 import { withNextVideo } from 'next-video/process';
+import createNextIntlPlugin from 'next-intl/plugin';
+
+const withNextIntl = createNextIntlPlugin();
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
@@ -12,5 +15,9 @@ const nextConfig = {
 };
 
 export default async function config() {
-    return withNextVideo(nextConfig);
+  return {
+    ...nextConfig,
+    ...withNextVideo(nextConfig),
+    ...withNextIntl(nextConfig),
+  };
   }

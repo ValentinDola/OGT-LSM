@@ -1,3 +1,4 @@
+import { useUser } from "@clerk/nextjs";
 import { Footer } from "./footer";
 import { Header } from "./header";
 

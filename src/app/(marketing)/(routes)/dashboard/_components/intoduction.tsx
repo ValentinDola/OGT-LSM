@@ -1,35 +1,52 @@
 "use client";
 
 import { useUser } from "@clerk/nextjs";
-import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 import { Button } from "@/components/ui/button";
+import { NextResponse } from "next/server";
+import { useEffect, useState } from "react";
 
-export const Introduction = () => {
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import { getSubscription } from "../../../../../../actions/get-subscription";
+
+interface IntroductionProps {
+  status: string | undefined;
+}
+
+export const Introduction = ({ status }: IntroductionProps) => {
   const { user, isLoaded, isSignedIn } = useUser();
-  const router = useRouter();
+  const [isSubscribed, setIsSubscribed] = useState<boolean>(false);
+
   return (
     <>
-      <div className="box-border w-full flex flex-col justify-start items-start gap-4 ">
-        <h2 className="text-[3rem] tracking-[-0.064em] font-semibold max-[986px]:text-[3rem] max-[400px]:text-[2rem] max-[600px]:text-[2.3rem]">
-          Howdy, {user?.username}
+      <div className="box-border w-full flex flex-col justify-start items-start  mt-10 ">
+        <h2 className="text-[2rem] tracking-[-0.064em]  font-semibold max-[986px]:text-[3rem] max-[450px]:text-[2.5rem] max-[800px]:text-[2.5rem]">
+          {status === "completed"
+            ? "Bravo vous êtes désormais étudiant de OGT Academy."
+            : "Accédez à nos cours de mentorat dès aujourd'hui !"}
         </h2>
-        <h2 className="text-[1rem] tracking-[-0.064em] font-semibold max-[986px]:text-[3rem] max-[400px]:text-[1rem] max-[600px]:text-[1.2rem]">
-          “Confidence is not ‘I will profit on this trade.’ Confidence is ‘I
-          will be fine if I don’t profit from this trade.” - Yvan Byeajee
+        <h2 className="text-[2rem] tracking-[-0.064em]  font-semibold max-[986px]:text-[3rem] max-[450px]:text-[2.5rem] max-[800px]:text-[2.5rem]">
+          {status === "completed" && "Commencez à regarder les cours."}
+        </h2>
+        <h2 className="text-[1.2rem] tracking-[-0.064em] max-[986px]:text-[1.2remrem] max-[450px]:text-[1rem] max-[800px]:text-[1.2rem]">
+          Obtenez plus de nous avec nos cours premium
         </h2>
 
-        <Button disabled={!isLoaded} className={"button_auth ml-4 mt-2"}>
-          Select Plan
-        </Button>
-      </div>
-      <div className="box-border w-full flex flex-col justify-start items-start  mt-10 ">
-        <h2 className="text-[2rem] tracking-[-0.064em] font-semibold max-[986px]:text-[3rem] max-[400px]:text-[2rem] max-[600px]:text-[2.3rem]">
-          Get access to our mentorship courses today!
-        </h2>
-        <h2 className="text-[1rem] tracking-[-0.064em] font-semibold max-[986px]:text-[3rem] max-[400px]:text-[1rem] max-[600px]:text-[1.2rem]">
-          Get more from us with our premium courses
-        </h2>
+        {status !== "completed" && (
+          <Link href="/mentorshippl">
+            <Button disabled={!isLoaded} className={"button_auth ml-4 mt-2"}>
+              Sélectionner un plan
+            </Button>
+          </Link>
+        )}
       </div>
     </>
   );

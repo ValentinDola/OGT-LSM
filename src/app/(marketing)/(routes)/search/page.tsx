@@ -4,9 +4,14 @@ import { db } from "@/lib/db";
 import { Categories } from "./_components/categories";
 import { SearchInput } from "@/components/search-input";
 import { auth } from "@clerk/nextjs/server";
-import { getCourse } from "../../../../../actions/get-courses";
+import {
+  getCourse,
+  getSubsCourse,
+  getSubscribedCourse,
+} from "../../../../../actions/get-courses";
 import { redirect } from "next/navigation";
 import { CoursesList } from "@/components/courses-list";
+import { SubCoursesList } from "@/components/subs-courses-list";
 
 interface SearchPageProps {
   searchParams: {
@@ -31,17 +36,43 @@ const SearchPage = async ({ searchParams }: SearchPageProps) => {
     ...searchParams,
   });
 
+  const subsCourses = await getSubsCourse({
+    userId,
+    ...searchParams,
+  });
+
+  const subscribedCourses = await getSubscribedCourse({
+    userId,
+    ...searchParams,
+  });
+
+  const hasSubscribed = await db.subscription.findFirst({
+    where: {
+      userId: userId,
+    },
+    select: {
+      status: true,
+    },
+  });
+
   return (
     <section className="max-w-[1380px] w-full mx-auto overflow-hidden  mt-[100px] mb-10">
       <div className="my-0 px-5 py-0">
-        <div className="flex flex-col items-center justify-center ">
-          <SearchInput />
-        </div>
+        {hasSubscribed?.status !== "completed" && (
+          <div className="flex flex-col items-center justify-center ">
+            <SearchInput />
+          </div>
+        )}
+
         <div className="flex flex-col items-center justify-center pt-6">
           <Categories items={categories} />
         </div>
         <div className="mt-7">
-          <CoursesList items={courses} />
+          {hasSubscribed?.status !== "completed" ? (
+            <CoursesList items={courses} />
+          ) : (
+            <SubCoursesList items={subscribedCourses} st={"completed"} />
+          )}
         </div>
       </div>
     </section>

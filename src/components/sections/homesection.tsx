@@ -14,17 +14,20 @@ import {
 } from "@/components/ui/dialog";
 import Video from "next-video";
 import getStarted from "/videos/get-started.mp4";
+import toast from "react-hot-toast";
+import { useToast } from "@/components/ui/use-toast";
 
 export default function HomeSection() {
   const { isSignedIn, user, isLoaded } = useUser();
   const router = useRouter();
+
   const [activeThumbnailImage, setActiveThumbnailImage] = useState(0);
 
   const testimonials = [
     {
       source: "/wura.jpg",
       quote:
-        "I enrolled into OGT Academy with minimal knowledge of Forex trading and I can boldly say that I have learnt a lot. The remarkable thing is that I have also been able to learn about life from a different angle. I am impressed with their professionalism and approachability.",
+        "Je me suis inscrit à OGT Academy avec peu de connaissances sur le Forex trading et je peux dire avec assurance que j'ai beaucoup appris. Ce qui est remarquable, c'est que j'ai aussi pu apprendre sur la vie d'un autre point de vue. Je suis impressionné par leur professionnalisme et leur accessibilité.",
       name: "josephine ABALO",
       href: "/",
       username: "@forextrader",
@@ -33,7 +36,7 @@ export default function HomeSection() {
     {
       source: "/wande.jpg",
       quote:
-        "Starting my forex journey with OGT has been a game changer for me, I joined OGT five months ago with zero knowledge about trading. But now I can confess this is a place that can make your trading journey easy and simple. Their teaching style is superb and makes you understand and adapt to the system within a short period of time.",
+        "Commencer mon parcours de Forex trading avec OGT a été une révolution pour moi. J'ai rejoint OGT il y a cinq mois sans aucune connaissance en trading. Mais maintenant, je peux dire que c'est un endroit qui rend votre parcours de trading facile et simple. Leur méthode d'enseignement est superbe et vous permet de comprendre et d'adapter le système en peu de temps.",
       name: "Donne DOGBEVI",
       href: "/",
       username: "@forextrader",
@@ -42,7 +45,7 @@ export default function HomeSection() {
     {
       source: "/mayokun.jpg",
       quote:
-        "I Joined OGT as a complete beginner in August 2023 during my holidays and in 2 months I started seeing impressive results. The classes are easy to understand. All the teachers in the academy always push me to be the best special",
+        "J'ai rejoint OGT en tant que débutant complet en août 2023 pendant mes vacances et en 2 mois, j'ai commencé à voir des résultats impressionnants. Les cours sont faciles à comprendre. Tous les professeurs de l'académie me poussent toujours à donner le meilleur de moi-même.",
       name: "Adjovi LAURA",
       href: "/",
       username: "@adjoatrader",
@@ -72,7 +75,7 @@ export default function HomeSection() {
   return (
     <section>
       <div className="max-w-[1380px] w-full mx-auto mt-9 mb-0 px-5 py-0">
-        <div className="grid grid-cols-[1fr_1fr] gap-20 grid-flow-dense px-0 py-20 max-[980px]:grid-cols-[1fr] max-[980px]:gap-[30px] max-[980px]:pt-[30px]">
+        <div className="grid grid-cols-1 gap-20 grid-flow-dense px-0 py-20 min-[1030px]:grid-cols-2 max-[980px]:gap-[30px] max-[980px]:pt-[30px]">
           <div className="min-h-[650px] relative opacity-100 transition-opacity duration-[0.7s] ease-[ease] ml-[30px] mt-[30px] max-[980px]:min-h-[450px] max-[980px]:ml-0 max-[980px]:mt-4">
             <div className="overflow-x-hidden bg-[#f5f6fa] max-[400px]:p-6">
               <div className="absolute opacity-0 invisible h-full w-full left-0 top-0 TEStimoNIALISacTIVE">
@@ -80,8 +83,8 @@ export default function HomeSection() {
                   className={`absolute top-[-60px] w-[400px] opacity-50 z-[-1] bg-[#E4FFF9] -left-20 h-[850px] max-[980px]:w-[300px] max-[980px]-left-10 max-[980px]-top-5`}
                 ></div>
 
-                <div className="bg-white min-h-[180px] w-[340px] absolute z-[5] px-8 py-6 -right-2.5 -bottom-10 max-[980px]:left-5 max-[400px]:w-[280px] max-[1024px]:mb-6">
-                  <blockquote className="text-[.9rem] text-[#6c82a3] leading-[1.35] tracking-[-0.2px] m-0 break-words max-[400px]:text-sm:">
+                <div className="bg-white min-h-[180px] w-[340px] absolute z-[5] px-8 py-6 -right-2.5 -bottom-10 max-[980px]:left-[100px] max-[450px]:left-[10px]">
+                  <blockquote className="text-[.9rem] text-[#6c82a3] leading-[1.35] tracking-[-0.2px] m-0 break-words max-[450px]:text-sm:">
                     {getQuote(activeThumbnailImage)}
                   </blockquote>
                   <div className="flex justify-between font-medium text-[1.4rem] mt-6">
@@ -107,7 +110,7 @@ export default function HomeSection() {
                 </div>
               </div>
             </div>
-            <ul className="flex absolute bottom-[-100px] mb-5 max-[980px]:-mb-2 max-[400px]:p-6">
+            <ul className="flex absolute bottom-[-100px] transition mb-5 max-[980px]:-mb-2 max-[980px]:ml-[120px] max-[450px]:mx-[10px]">
               {testimonials.map((item, i) => (
                 <li
                   key={i}
@@ -123,33 +126,36 @@ export default function HomeSection() {
               ))}
             </ul>
           </div>
-          <div className="max-[980px]:mt-4 max-[980px]:row-[1]">
-            <h1 className="mb-5 text-[5rem] tracking-[-4px] leading-[1.1] font-semibold max-[400px]:tracking-[-.5px] max-[400px]:p-8 max-[400px]:text-[3rem] max-[600px]:px-5 max-[600px]:text-[3rem] max-[980px]:text-[4.2rem] max-[980px]:tracking-[-2px]">
-              Discover The Pathway to Mastering the Art of Profitable Forex
-              Trading.
+          <div className="max-[980px]:mt-4 max-[980px]:row-[1] max-[980px]:mx-[20px]">
+            <h1 className="mb-5 text-[4.5rem] tracking-[-4px] leading-[1.1] font-semibold max-[450px]:text-[2.5rem] max-[450px]:-mx-5 max-[980px]:text-[4.2rem] max-[980px]:tracking-[-2px]">
+              Découvrez comment maîtriser l'art de trader le Forex de manière
+              rentable.
             </h1>
-            <h6 className="text-[1rem] font-normal mt-4 max-[980px]:text-[1rem] max-[980px]:tracking-[-0.9px] max-[400px]:p-8 max-[400px]:text-[1.2rem] max-[400px]:mt-0 max-[600px]:px-5">
-              OGT Academy is your sure guide to financial freedom. We're a
-              supportive community dedicated to teaching you the art of
-              profitable forex trading.
+            <h6 className="text-[1rem] font-normal mt-4 max-[980px]:text-[1rem] max-[980px]:tracking-[-0.9px] max-[450px]:-mx-5 max-[450px]:text-sm ">
+              OGT Academy est votre guide sûr vers la liberté financière. Nous
+              sommes une communauté solidaire dédiée à vous enseigner l'art de
+              trader le Forex de manière rentable.
             </h6>
-            <div className="flex w-[600px] justify-center items-center mt-7 max-[400px]:mt-4">
+            <div className="flex w-[600px] justify-center items-center mt-7 max-[450px]:flex-col max-[450px]:-ml-[150px] ">
               <Button
-                onClick={() => router.push("/freecourses")}
+                onClick={() => {
+                  isSignedIn
+                    ? router.push("/dashboard")
+                    : toast.error(
+                        "Login or Signup before you can join free class"
+                      );
+                }}
                 variant={"link"}
-                className={
-                  "mr-7 text-base bg-[none] text-[#0066f5] shadow-none"
-                }
+                className={"mr-7 text-sm bg-[none] text-[#0066f5] shadow-none"}
               >
-                Join free class{" "}
+                Joignez notre classe gratuite.{" "}
               </Button>
 
               <Button
                 disabled={!isLoaded}
-                onClick={handleEnrollNow}
-                className={"button_auth"}
+                onClick={() => router.push("/mentorshippl")}
               >
-                Enroll now
+                Inscrivez-vous maintenant.
               </Button>
             </div>
           </div>
