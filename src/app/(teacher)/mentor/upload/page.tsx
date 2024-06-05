@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { useUser } from "@clerk/nextjs";
 import { redirect, useRouter } from "next/navigation";
-import { Payment, columns } from "./_components/columns";
+import { columns } from "./_components/columns";
 import { DataTable } from "./_components/data-table";
 import { auth, currentUser } from "@clerk/nextjs/server";
 import { db } from "@/lib/db";
