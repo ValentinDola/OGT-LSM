@@ -16,7 +16,7 @@ interface CourseCardProps {
   imageUrl: string;
   chaptersLength: number;
   price: number;
-  progress: number | null;
+  progress: number | undefined;
   category: string;
   isFree: boolean;
 }
@@ -67,7 +67,7 @@ export const FreeCourseCard = ({
                   variant={progress === 100 ? "success" : "default"}
                   icon={progress === 100 ? CheckCircle2 : Clock}
                 />
-                <span className="text-xs">{Math.round(progress)}%</span>
+                <span className="text-xs">{Math.round(Number(progress))}%</span>
               </div>
             )}
           </div>

@@ -9,7 +9,7 @@ import { useRouter } from "next/navigation";
 type CourseWithProgressWithCategory = Course & {
   category: Category | null;
   chapters: { id: string }[];
-  progress: number | null;
+  progress: number | undefined;
 };
 
 interface MentorshipCoursesProps {

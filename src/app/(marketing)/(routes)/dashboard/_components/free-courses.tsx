@@ -6,7 +6,7 @@ import { FreeCoursesList } from "@/components/free-courses-list";
 type CourseWithProgressWithCategory = Course & {
   category: Category | null;
   chapters: { id: string }[];
-  progress: number | null;
+  progress: number | undefined;
 };
 
 interface FreeCoursesProps {

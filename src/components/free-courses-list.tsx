@@ -7,7 +7,7 @@ import { FreeCourseCard } from "./free-course-card";
 type CourseWithProgressWithCategory = Course & {
   category: Category | null;
   chapters: { id: string }[];
-  progress: number | null;
+  progress: number | undefined;
 };
 
 interface CoursesListProps {

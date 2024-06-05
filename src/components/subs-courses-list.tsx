@@ -9,7 +9,7 @@ import { SubCourseCard } from "./subs-course-card";
 type SubCourseWithProgressWithCategory = Course & {
   category: Category | null;
   chapters: { id: string }[];
-  progress: number | null;
+  progress: number | undefined;
 };
 
 interface SubCoursesListProps {

@@ -88,7 +88,7 @@ export const CourseCard = ({
                   icon={progress === 100 ? CheckCircle2 : Clock}
                 />
                 <span className="text-xs">
-                  {Math.round(progress === undefined ? 0 : progress)}%
+                  {Math.round(Number(progress === undefined ? 0 : progress))}%
                 </span>
               </div>
             )}
