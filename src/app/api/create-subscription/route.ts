@@ -44,13 +44,13 @@ export async function POST(req: Request) {
       },
     ];
     // Retrieves or creates a Stripe customer for subscriptions (stripeSubsCustomer) associated with the user's email address.
-    let stripeSubsCustomer = await db.stripeSubsCustomer.findUnique({
+    let stripeSubsCustomer = await db.subscriptionCustomer.findUnique({
       where: {
         id: id.toHexString(),
         userId: user.id,
       },
       select: {
-        stripeCustomerId: true,
+        customerId: true,
       },
     });
 
@@ -62,16 +62,16 @@ export async function POST(req: Request) {
         },
       });
 
-      stripeSubsCustomer = await db.stripeSubsCustomer.create({
+      stripeSubsCustomer = await db.subscriptionCustomer.create({
         data: {
           userId: user.id,
-          stripeCustomerId: customer.id,
+          customerId: customer.id,
         },
       });
     }
     // Creates a checkout session with Stripe using the stripe.checkout.sessions.create method, specifying the customer, line items, success and cancel URLs, and other parameters.
     const session = await stripe.checkout.sessions.create({
-      customer: stripeSubsCustomer.stripeCustomerId,
+      customer: stripeSubsCustomer.customerId,
       payment_method_types: ["card"],
       line_items,
       mode: "subscription",
