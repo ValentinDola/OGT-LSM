@@ -16,7 +16,8 @@ import { Chapter, MuxData } from "@prisma/client";
 import { FileUpload } from "@/components/file-upload";
 
 interface ChapterVideoFormProps {
-  initialData: Chapter & { muxData?: MuxData | null };
+  videoUrl: string | null | undefined;
+  muxData: MuxData | null | undefined;
   courseId: string;
   chapterId: string;
 }
@@ -26,7 +27,8 @@ const formSchema = z.object({
 });
 
 export const ChapterVideoForm = ({
-  initialData,
+  videoUrl,
+  muxData,
   courseId,
   chapterId,
 }: ChapterVideoFormProps) => {
@@ -35,7 +37,7 @@ export const ChapterVideoForm = ({
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      videoUrl: initialData.videoUrl || "",
+      videoUrl: videoUrl || "",
     },
   });
 
@@ -62,13 +64,13 @@ export const ChapterVideoForm = ({
         Video du cour
         <Button onClick={toggleEdit} variant={"ghost"}>
           {isEditing && <>Cancel</>}
-          {!isEditing && !initialData.videoUrl && (
+          {!isEditing && !videoUrl && (
             <>
               <Plus className="h-4 w-4 mr-2" />
               Ajouter une video
             </>
           )}
-          {!isEditing && initialData.videoUrl && (
+          {!isEditing && videoUrl && (
             <>
               <Pencil className="h-4 w-4 mr-2" />
               Modification de la video
@@ -77,13 +79,13 @@ export const ChapterVideoForm = ({
         </Button>
       </div>
       {!isEditing &&
-        (!initialData.videoUrl ? (
+        (!videoUrl ? (
           <div className="flex justify-center items-center bg-slate-200 h-60 rounded-md">
             <Play className="h-10 w-10 text-slate-500" />
           </div>
         ) : (
           <div className="relative aspect-video mt-2">
-            <MuxPlayer playbackId={initialData?.muxData?.playbackId || ""} />
+            <MuxPlayer playbackId={muxData?.playbackId || ""} />
           </div>
         ))}
 
@@ -102,7 +104,7 @@ export const ChapterVideoForm = ({
           </div>
         </div>
       )}
-      {initialData.videoUrl && !isEditing && (
+      {videoUrl && !isEditing && (
         <div className="text-xs text-muted-foreground mt-2">
           Les vidéos peuvent prendre quelques minutes à être traitées.
           Actualisez la page si la vidéo n&apos;apparaît pas.

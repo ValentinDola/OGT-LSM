@@ -27,7 +27,7 @@ import { Chapter, Course } from "@prisma/client";
 import { Editor } from "@/components/editor";
 
 interface ChapterDescriptionFormProps {
-  initialData: Chapter;
+  description: string | null | undefined;
   courseId: string;
   chapterId: string;
 }
@@ -37,7 +37,7 @@ const formSchema = z.object({
 });
 
 export const ChapterDescriptionForm = ({
-  initialData,
+  description,
   courseId,
   chapterId,
 }: ChapterDescriptionFormProps) => {
@@ -46,7 +46,7 @@ export const ChapterDescriptionForm = ({
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      description: initialData.description || "",
+      description: String(description),
     },
   });
 
@@ -88,10 +88,10 @@ export const ChapterDescriptionForm = ({
         <p
           className={cn(
             "text-sm mt-2",
-            !initialData.description && "text-stone-500 italic"
+            !description && "text-stone-500 italic"
           )}
         >
-          {initialData.description || "No Description"}
+          {description || "No Description"}
         </p>
       ) : (
         <Form {...form}>

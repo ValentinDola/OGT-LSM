@@ -22,9 +22,7 @@ import { Pencil, Router } from "lucide-react";
 import { useRouter } from "next/navigation";
 
 interface ChapterTitleFormProps {
-  initialData: {
-    title: string;
-  };
+  title: string | undefined;
   courseId: string;
   chapterId: string;
 }
@@ -34,7 +32,7 @@ const formSchema = z.object({
 });
 
 export const ChapterTitleForm = ({
-  initialData,
+  title,
   chapterId,
   courseId,
 }: ChapterTitleFormProps) => {
@@ -42,7 +40,9 @@ export const ChapterTitleForm = ({
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
-    defaultValues: initialData,
+    defaultValues: {
+      title: title,
+    },
   });
 
   const router = useRouter();
@@ -80,7 +80,7 @@ export const ChapterTitleForm = ({
         </Button>
       </div>
       {!isEditing ? (
-        <p className="text-sm mt-2">{initialData.title}</p>
+        <p className="text-sm mt-2">{title}</p>
       ) : (
         <Form {...form}>
           <form

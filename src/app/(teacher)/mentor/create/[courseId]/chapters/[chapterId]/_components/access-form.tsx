@@ -29,7 +29,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Switch } from "@/components/ui/switch";
 
 interface ChapterAccessFormProps {
-  initialData: Chapter;
+  isFree: boolean | undefined;
   courseId: string;
   chapterId: string;
 }
@@ -39,7 +39,7 @@ const formSchema = z.object({
 });
 
 export const ChapterAccessForm = ({
-  initialData,
+  isFree,
   courseId,
   chapterId,
 }: ChapterAccessFormProps) => {
@@ -48,7 +48,7 @@ export const ChapterAccessForm = ({
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      isFree: Boolean(initialData.isFree),
+      isFree: Boolean(isFree),
     },
   });
 
@@ -87,13 +87,8 @@ export const ChapterAccessForm = ({
         </Button>
       </div>
       {!isEditing && (
-        <div
-          className={cn(
-            "text-sm mt-2",
-            !initialData.isFree && "text-stone-500 italic"
-          )}
-        >
-          {initialData.isFree ? (
+        <div className={cn("text-sm mt-2", !isFree && "text-stone-500 italic")}>
+          {isFree ? (
             <>Ce chapitre est gratuit pour un aperçu</>
           ) : (
             <>Ce chapitre n&apos;est pas gratuit pour un aperçu</>

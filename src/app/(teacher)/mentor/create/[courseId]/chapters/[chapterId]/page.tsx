@@ -105,12 +105,12 @@ const EditChapter = async ({
                   <h2 className="text-xl">Personnalisez votre chapitre</h2>
                 </div>
                 <ChapterTitleForm
-                  initialData={chapter}
+                  title={chapter?.title}
                   courseId={params.courseId}
                   chapterId={params.chapterId}
                 />
                 <ChapterDescriptionForm
-                  initialData={chapter}
+                  description={chapter?.description}
                   courseId={params.courseId}
                   chapterId={params.chapterId}
                 />
@@ -121,7 +121,7 @@ const EditChapter = async ({
                   <h2 className="text-xl">Access Settings</h2>
                 </div>
                 <ChapterAccessForm
-                  initialData={chapter}
+                  isFree={chapter?.isFree}
                   courseId={params.courseId}
                   chapterId={params.chapterId}
                 />
@@ -133,7 +133,8 @@ const EditChapter = async ({
                 <h2 className="text-xl">Video settings</h2>
               </div>
               <ChapterVideoForm
-                initialData={chapter}
+                videoUrl={chapter?.videoUrl}
+                muxData={chapter?.muxData}
                 courseId={params.courseId}
                 chapterId={params.chapterId}
               />
