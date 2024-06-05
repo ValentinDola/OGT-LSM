@@ -102,7 +102,7 @@ export default function HomeSection() {
                 </div>
                 <div className="absolute w-full h-full bg-white z-[2] opacity-0 left-0 top-0"></div>
                 <div className="h-[650px] w-[520px] overflow-hidden relative max-[980px]:w-full max-[980px]:h-full">
-                  <img
+                  <Image
                     src={getImage(activeThumbnailImage)}
                     alt={getImage(activeThumbnailImage)}
                     className={`h-full w-full object-cover z-[1] absolute left-0 top-0 translate-x-0 translate-y-0 `}
@@ -121,20 +121,20 @@ export default function HomeSection() {
                   }
                   onClick={() => handleTestimonailActivity(i)}
                 >
-                  <img src={item.source} alt={item.source} />
+                  <Image src={item.source} alt={item.source} />
                 </li>
               ))}
             </ul>
           </div>
           <div className="max-[980px]:mt-4 max-[980px]:row-[1] max-[980px]:mx-[20px]">
             <h1 className="mb-5 text-[4.5rem] tracking-[-4px] leading-[1.1] font-semibold max-[450px]:text-[2.5rem] max-[450px]:-mx-5 max-[980px]:text-[4.2rem] max-[980px]:tracking-[-2px]">
-              Découvrez comment maîtriser l'art de trader le Forex de manière
-              rentable.
+              Découvrez comment maîtriser l&apos;art de trader le Forex de
+              manière rentable.
             </h1>
             <h6 className="text-[1rem] font-normal mt-4 max-[980px]:text-[1rem] max-[980px]:tracking-[-0.9px] max-[450px]:-mx-5 max-[450px]:text-sm ">
               OGT Academy est votre guide sûr vers la liberté financière. Nous
-              sommes une communauté solidaire dédiée à vous enseigner l'art de
-              trader le Forex de manière rentable.
+              sommes une communauté solidaire dédiée à vous enseigner l&apos;art
+              de trader le Forex de manière rentable.
             </h6>
             <div className="flex w-[600px] justify-center items-center mt-7 max-[450px]:flex-col max-[450px]:-ml-[150px] ">
               <Button

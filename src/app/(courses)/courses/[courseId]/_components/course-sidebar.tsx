@@ -1,9 +1,6 @@
 // Import necessary types from the Prisma client
 import { Chapter, Course, UserProgress } from "@prisma/client";
 
-// Import the VideoInfo component from the local file
-import { VideoInfo } from "./video-info-side";
-
 // Import the ChapterBar component from the local file
 import { ChapterBar } from "./chapter-bar";
 
@@ -16,15 +13,10 @@ interface CourseBarProps {
       userProgress: UserProgress[] | null; // User progress can be null or an array of UserProgress
     })[];
   };
-  progressCounter: number | undefined; // Optional progress counter
 }
 
 // Define the CourseBar functional component
-export const CourseBar = async ({
-  children,
-  course,
-  progressCounter,
-}: CourseBarProps) => {
+export const CourseBar = async ({ children, course }: CourseBarProps) => {
   return (
     <>
       {/* Outer div container with flexbox layout */}
@@ -32,7 +24,10 @@ export const CourseBar = async ({
         {/* Div container for the VideoInfo component, responsive to screen size */}
         <div className="w-[1000px] max-[450px]:w-full">
           {/* Render the VideoInfo component, passing children and course as props */}
-          <VideoInfo children={children} course={course} />
+          <div className="w-full flex flex-col bg-[#fff] [transition:all_.5s_ease]">
+            {/* Inner div with top padding for rendering nested children components */}
+            <div className="pt-3">{children}</div>
+          </div>
         </div>
 
         {/* Div container for the ChapterBar component, hidden on small screens */}

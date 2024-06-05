@@ -243,7 +243,7 @@ export default function Plans() {
             Choisissez votre plan.
           </h2>
           <h2 className="text-[1.2rem] tracking-[-0.064em] font-semibold max-[450px]:text-[1rem] max-[600px]:text-[1rem]">
-            L'apprentissage du forex rendu plus facile.
+            L&apos;apprentissage du forex rendu plus facile.
           </h2>
         </div>
       </div>

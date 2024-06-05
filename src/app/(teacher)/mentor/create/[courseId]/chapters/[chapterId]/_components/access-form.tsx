@@ -96,7 +96,7 @@ export const ChapterAccessForm = ({
           {initialData.isFree ? (
             <>Ce chapitre est gratuit pour un aperçu</>
           ) : (
-            <>Ce chapitre n'est pas gratuit pour un aperçu</>
+            <>Ce chapitre n&apos;est pas gratuit pour un aperçu</>
           )}
         </div>
       )}{" "}

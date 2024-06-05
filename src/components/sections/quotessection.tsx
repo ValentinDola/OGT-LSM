@@ -42,7 +42,7 @@ export default function Quotes() {
           </h2>
           <h2 className="text-[1.2rem] tracking-[-0.064em] font-semibold max-[450px]:text-[1.3rem] max-[600px]:text-[1.2rem]">
             Vos rêves méritent une académie de formation solide, nous avons ce
-            qu'il vous faut!
+            qu&apos;il vous faut!
           </h2>
         </div>
       </div>

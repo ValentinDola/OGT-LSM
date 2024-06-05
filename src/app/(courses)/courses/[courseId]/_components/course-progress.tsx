@@ -6,7 +6,7 @@ import { cn } from "@/lib/utils";
 
 // Define the props interface for the CourseProgress component
 interface CourseProgressProps {
-  value: number; // The progress value (percentage)
+  value: number | undefined; // The progress value (percentage)
   variant?: "default" | "success"; // Optional variant for styling
 }
 
@@ -32,7 +32,7 @@ export const CourseProgress = ({ variant, value }: CourseProgressProps) => {
           )}
         >
           {/* Round the progress value to the nearest integer and display it */}
-          {Math.round(value)}%
+          {Math.round(Number(value))}%
         </span>
       </div>
     </div>

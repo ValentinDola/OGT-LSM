@@ -80,7 +80,10 @@ export const AttachmentForm = ({
           {initialData.attachments.length > 0 && (
             <div className="space-y-2">
               {initialData.attachments.map((attachment) => (
-                <div className="flex items-center px-3 py-1 w-full bg-sky-100 border-sky-200 border text-sky-700 rounded-md">
+                <div
+                  key={attachment.id}
+                  className="flex items-center px-3 py-1 w-full bg-sky-100 border-sky-200 border text-sky-700 rounded-md"
+                >
                   <File className="h-4 w-4 mr-2 flex-shrink-0" />
                   <p className="text-xs line-clamp-1">{attachment.name}</p>
                   {deletingId === attachment.id && (

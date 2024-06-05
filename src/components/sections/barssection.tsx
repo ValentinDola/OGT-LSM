@@ -17,7 +17,7 @@ export default function BarsSection() {
               >
                 le FX trading
               </span>{" "}
-              du débutant à l'expert
+              du débutant à l&apos;expert
             </h2>
 
             <a href="" className="mt-5 self-start button_auth">
@@ -171,8 +171,8 @@ export default function BarsSection() {
                 </h6>
                 <p className="leading-[1.4] text-[.8rem] text-[#6c82a3] mt-2 mb-0 mx-0">
                   Le prix des paires de devises est influencé par des facteurs
-                  tels que l'offre et la demande, les indicateurs économiques,
-                  les événements géopolitiques et l'inflation.
+                  tels que l&apos;offre et la demande, les indicateurs
+                  économiques, les événements géopolitiques et l&apos;inflation.
                 </p>
               </div>
             </div>
@@ -189,8 +189,8 @@ export default function BarsSection() {
                 </h6>
                 <p className="leading-[1.4] text-[.8rem] text-[#6c82a3] mt-2 mb-0 mx-0">
                   Les traders utilisent diverses stratégies pour trader le
-                  forex, notamment l'investissement à long terme et le trading
-                  basé sur l'analyse technique.
+                  forex, notamment l&apos;investissement à long terme et le
+                  trading basé sur l&apos;analyse technique.
                 </p>
               </div>
             </div>
@@ -208,7 +208,7 @@ export default function BarsSection() {
                 <p className="leading-[1.4] text-[.8rem] text-[#6c82a3] mt-2 mb-0 mx-0">
                   Comme tout investissement, le trading forex comporte des
                   risques. La volatilité du marché, les événements géopolitiques
-                  et les changements dans l'offre et la demande peuvent
+                  et les changements dans l&apos;offre et la demande peuvent
                   entraîner des fluctuations de prix.
                 </p>
               </div>

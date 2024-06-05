@@ -21,22 +21,23 @@ const FAQ = () => {
           <Button variant="link" onClick={() => route.push("#mppl")}>
             Cliquez ici pour créer votre compte / se connecter
           </Button>
-          ensuite, rejoignez l'un des plans de mentorat.
+          ensuite, rejoignez l&apos;un des plans de mentorat.
         </>
       ),
     },
     {
-      question: "J'ai payé pour le mentorat, que faire ensuite ?",
+      question: "J'ai payé pour le mentorat, que faire ensuite?",
       description: (
         <>
-          Nous sommes ravis de vous accueillir dans le mentorat ! Après votre
+          Nous sommes ravis de vous accueillir dans le mentorat! Après votre
           paiement, surveillez votre boîte de réception pour un email intitulé
-          "Votre commande de mentorat OGT Academy a été reçue." Dans cet email,
-          vous trouverez tous les liens d'accès au cours de mentorat et aux
-          groupes : WhatsApp (pour trois, six et douze mois) ou Telegram (pour
-          un mois). Mais si vous ne le voyez pas dans l'heure suivant votre
-          paiement, ne vous inquiétez pas. Envoyez simplement votre preuve de
-          paiement et votre adresse email enregistrée à{" "}
+          &apos;Votre commande de mentorat OGT Academy a été reçue.&apos; Dans
+          cet email, vous trouverez tous les liens d&apos;accès au cours de
+          mentorat et aux groupes : WhatsApp (pour trois, six et douze mois) ou
+          Telegram (pour un mois). Mais si vous ne le voyez pas dans
+          l&apos;heure suivant votre paiement, ne vous inquiétez pas. Envoyez
+          simplement votre preuve de paiement et votre adresse email enregistrée
+          à{" "}
           <span>
             <a href="mailto:support@OGTacademy.com">support@OGTacademy.com</a>
           </span>
@@ -45,9 +46,9 @@ const FAQ = () => {
       ),
     },
     {
-      question: "Est-ce un mentorat à vie ?",
+      question: "Est-ce un mentorat à vie?",
       description:
-        "Non, ce n'est pas le cas. Notre mentorat est basé sur un abonnement. Nous proposons des abonnements de mentorat mensuels, trimestriels, semestriels et annuels qui peuvent être renouvelés à expiration.",
+        "Non, ce n&apos;est pas le cas. Notre mentorat est basé sur un abonnement. Nous proposons des abonnements de mentorat mensuels, trimestriels, semestriels et annuels qui peuvent être renouvelés à expiration.",
     },
     {
       question:
@@ -136,7 +137,7 @@ const FAQ = () => {
             Questions fréquemment posées
           </h2>
           <h2 className="text-[1rem] tracking-[-0.064em] font-semibold max-[986px]:text-[3rem] max-sm:text-[1rem] ">
-            Tout ce que vous devez savoir sur l'OGT Academy et ses plans de
+            Tout ce que vous devez savoir sur l&apos;OGT Academy et ses plans de
             mentorat.
           </h2>
         </div>

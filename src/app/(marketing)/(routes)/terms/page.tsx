@@ -86,8 +86,10 @@ const Terms = () => {
                   <>
                     <p className="text-sm">{term.others.p}</p>
                     <ul className="list-disc ml-4">
-                      {term.others?.nd.map((ndd) => (
-                        <li className="text-sm -my-0 font-semibold">{ndd}</li>
+                      {term.others?.nd.map((ndd, i) => (
+                        <li key={i} className="text-sm -my-0 font-semibold">
+                          {ndd}
+                        </li>
                       ))}
                     </ul>
                   </>
