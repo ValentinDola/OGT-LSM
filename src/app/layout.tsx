@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
 import "./globals.css";
+import "dotenv/config";
 import { ClerkProvider } from "@clerk/nextjs";
+import { frFR } from "@clerk/localizations";
 import { ToastProvider } from "@/components/providers/toaster-provider";
 import ConfettiProvider from "@/components/providers/confetti-provider";
 
@@ -20,8 +22,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <ClerkProvider>
-      <html lang="fr">
+    <ClerkProvider localization={frFR}>
+      <html>
         <body className={font.className}>
           <ToastProvider />
           <ConfettiProvider />

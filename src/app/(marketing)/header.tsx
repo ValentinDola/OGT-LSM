@@ -31,15 +31,16 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { HashLoader } from "react-spinners";
 
 // Define navigation links
 const Routes = [
   { name: "Tableau de cours", href: "/dashboard", user: true },
   { name: "Mes cours", href: "/mycourses", user: true },
-  { name: "Réservation", href: "/booking", user: true },
+  //{ name: "Réservation", href: "/booking", user: true },
   { name: "Programmes", href: "/mentorshippg", user: false },
   { name: "Plans", href: "/mentorshippl", user: false },
-  { name: "Blog", href: "/blog", user: false },
+  //{ name: "Blog", href: "/blog", user: false },
   { name: "FAQ", href: "/faq", user: false },
 ];
 
@@ -171,10 +172,7 @@ export const Header = () => {
         <div>
           <ul className="visible opacity-100 pl-8 pr-0 pt-2.5 pb-0">
             <ClerkLoading>
-              <Loader
-                color="#fff"
-                className="h-5 w-5 text-muted-foreground animate-spin"
-              />
+              <HashLoader color="#000" size={20} />
             </ClerkLoading>
             <ClerkLoaded>
               <SignedIn>

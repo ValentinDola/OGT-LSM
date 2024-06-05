@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-
+import "dotenv/config";
 import { Check, Sparkles } from "lucide-react";
 
 import { CedisFormat, CfaFormat } from "@/lib/format";
@@ -9,11 +9,8 @@ import { PaystackButton } from "react-paystack";
 import { HashLoader } from "react-spinners";
 import axios from "axios";
 import toast from "react-hot-toast";
-import { Button } from "@/components/ui/button";
 import { useUser } from "@clerk/nextjs";
-import { db } from "@/lib/db";
-import { redirect, useRouter } from "next/navigation";
-import { NextResponse } from "next/server";
+import { useRouter } from "next/navigation";
 
 const quotes = [
   {
@@ -140,7 +137,7 @@ export default function Plans() {
     amount: number | undefined
   ) => {
     try {
-      const secretKey = "sk_test_066bbd51a3fcfe51b2d6111fc507571527683309";
+      const secretKey = process.env.NEXT_PUBLIC_PAYSTACK_SECRET_KEY;
       const url = "https://api.paystack.co/plan";
 
       const data = {
@@ -169,7 +166,7 @@ export default function Plans() {
   ) => {
     try {
       const url = "https://api.paystack.co/subscription";
-      const secretKey = "sk_test_066bbd51a3fcfe51b2d6111fc507571527683309"; // Replace with your actual secret key
+      const secretKey = process.env.NEXT_PUBLIC_PAYSTACK_SECRET_KEY; // Replace with your actual secret key
       const data = {
         customer: customer_id, // Replace with actual customer ID
         plan: plan_code, // Replace with actual plan ID
@@ -197,7 +194,7 @@ export default function Plans() {
     try {
       const email = userEmail; // Replace with the actual email or code
       const url = `https://api.paystack.co/customer/${email}`;
-      const secretKey = "sk_test_066bbd51a3fcfe51b2d6111fc507571527683309"; // Replace with your actual secret key
+      const secretKey = process.env.NEXT_PUBLIC_PAYSTACK_SECRET_KEY; // Replace with your actual secret key
       const response = await axios.get(url, {
         headers: {
           Authorization: `Bearer ${secretKey}`,
@@ -235,7 +232,7 @@ export default function Plans() {
   };
 
   const onPaymentCancel = () => {
-    return toast.error("Vous annulez le paiement"), router.push("/");
+    return toast.error("Vous avez annuler le paiement"), router.push("/");
   };
 
   return (
@@ -301,9 +298,9 @@ export default function Plans() {
                 </Button> */}
                   <PaystackButton
                     className="m-4 py-2 px-4 hover:text-white bg-primary text-primary-foreground hover:bg-primary/90 inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50"
-                    publicKey={
-                      "pk_test_3231955e47873d3bc2947711773b5a32cf79b4a1"
-                    }
+                    publicKey={String(
+                      process.env.NEXT_PUBLIC_PAYSTACK_PUBLIC_KEY
+                    )}
                     reference={new Date().getTime().toString()}
                     email={String(userEmail)}
                     amount={Number(item.fee * 1500)}

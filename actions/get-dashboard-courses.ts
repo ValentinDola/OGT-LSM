@@ -11,13 +11,18 @@ import { getProgress } from "./get-progress";
 type CourseWithProgressWithCategory = Course & {
   category: Category; // Category of the course
   chapters: Chapter[]; // Array of chapters in the course
-  progress: number | null; // User's progress in the course
+  progress: number | undefined; // User's progress in the course
 };
 
 // Define a type for the structure of the returned dashboard courses.
 type DashboardCourses = {
   completedCourses: CourseWithProgressWithCategory[]; // Array of completed courses
   coursesInProgress: CourseWithProgressWithCategory[]; // Array of courses in progress
+};
+
+type SubscribedDashboardCourses = {
+  subsCompletedCourses: CourseWithProgressWithCategory[]; // Array of completed courses
+  subsCoursesInProgress: CourseWithProgressWithCategory[]; // Array of courses in progress
 };
 
 // Asynchronous function to get the dashboard courses for a user.
@@ -77,6 +82,66 @@ export const getDashboardCourses = async (
     return {
       completedCourses: [],
       coursesInProgress: [],
+    };
+  }
+};
+
+export const getSubscribedDashboardCourses = async (
+  userId: string // ID of the user
+): Promise<SubscribedDashboardCourses> => {
+  try {
+    // Query the database to find all purchased courses for the user.
+    const subscribedCourses = await db.course.findMany({
+      where: {
+        userId: userId, // Filter by user ID
+        isSubscribed: true,
+      },
+      select: {
+        id: true,
+        userId: true,
+        title: true,
+        description: true,
+        imageUrl: true,
+        category: true, // Include the category of the course
+        chapters: {
+          where: {
+            isPublished: true, // Only include published chapters
+          },
+        },
+      },
+    });
+
+    // Map the purchased courses to a list of courses with the necessary structure.
+    const courses = subscribedCourses as CourseWithProgressWithCategory[];
+
+    // Iterate over the fetched courses to calculate and add the progress for each course.
+    for (let course of courses) {
+      const progress = await getProgress(userId, course.id); // Get the progress for the course
+      course["progress"] = progress; // Add the progress to the course object
+    }
+
+    // Filter the courses to get the completed courses.
+    const subsCompletedCourses = courses.filter(
+      (course) => course.progress === 100 // Course is completed if progress is 100%
+    );
+
+    // Filter the courses to get the courses in progress.
+    const subsCoursesInProgress = courses.filter(
+      (course) => (course.progress ?? 0) > 0 && (course.progress ?? 0) < 100 // Course is in progress if progress is between 0 and 100%
+    );
+
+    // Return the completed courses and courses in progress.
+    return {
+      subsCompletedCourses,
+      subsCoursesInProgress,
+    };
+  } catch (error) {
+    // Log any errors that occur during the database query or data processing.
+    console.log("[GET_DASHBOARD_COURSES]", error);
+    // Return empty arrays for completed courses and courses in progress in case of an error.
+    return {
+      subsCompletedCourses: [],
+      subsCoursesInProgress: [],
     };
   }
 };

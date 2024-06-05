@@ -1,10 +1,14 @@
 import { auth } from "@clerk/nextjs/server";
-import { getDashboardCourses } from "../../../../../actions/get-dashboard-courses";
+import {
+  getDashboardCourses,
+  getSubscribedDashboardCourses,
+} from "../../../../../actions/get-dashboard-courses";
 import { redirect } from "next/navigation";
 import { MyCourses } from "./_components/my-courses";
 import { Introduction } from "./_components/intoduction";
 import { CheckCircle2, Clock } from "lucide-react";
 import { InfoCard } from "./_components/info-card";
+import { db } from "@/lib/db";
 
 export default async function Courses() {
   const { userId } = auth();
@@ -13,9 +17,28 @@ export default async function Courses() {
     return redirect("/");
   }
 
+  const isSubscribe = await db.subscription.findFirst({
+    where: { userId: userId, status: "completed" },
+    select: {
+      status: true,
+    },
+  });
+
+  const isSubs = isSubscribe?.status;
+
   const { completedCourses, coursesInProgress } = await getDashboardCourses(
     userId
   );
+
+  console.log("purchased courses", { completedCourses, coursesInProgress });
+
+  const { subsCompletedCourses, subsCoursesInProgress } =
+    await getSubscribedDashboardCourses(userId);
+
+  console.log("subscridbed courses", {
+    subsCompletedCourses,
+    subsCoursesInProgress,
+  });
 
   return (
     <section className="max-w-[1380px] w-full mx-auto overflow-hidden  mt-[80px] mb-10">
@@ -26,19 +49,33 @@ export default async function Courses() {
             <InfoCard
               icon={Clock}
               label="In progress"
-              numberOfItems={coursesInProgress.length}
+              numberOfItems={
+                isSubs === "completed"
+                  ? subsCoursesInProgress.length
+                  : coursesInProgress.length
+              }
             />
 
             <InfoCard
               icon={CheckCircle2}
               label="Completed"
               variant="success"
-              numberOfItems={completedCourses.length}
+              numberOfItems={
+                isSubs === "completed"
+                  ? subsCompletedCourses.length
+                  : completedCourses.length
+              }
             />
           </div>
 
           <div className="mt-7">
-            <MyCourses items={[...completedCourses, ...coursesInProgress]} />
+            <MyCourses
+              items={
+                isSubs === "completed"
+                  ? [...subsCompletedCourses, ...subsCoursesInProgress]
+                  : [...completedCourses, ...coursesInProgress]
+              }
+            />
           </div>
         </div>
       </div>

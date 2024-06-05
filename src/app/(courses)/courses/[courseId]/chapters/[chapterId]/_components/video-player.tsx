@@ -34,13 +34,7 @@ export const VideoPlayer = ({
   muxData,
 }: VideoPlayerProps) => {
   const [isReady, setIsReady] = useState(false); // Initialize isReady state to false
-  console.log("VideoPlayer Props:", {
-    title,
-    playbackId,
-    isLocked,
-    isSubscribe,
-    muxData,
-  });
+
   return (
     <div className="relative aspect-video">
       {/* Loader while video is loading */}
