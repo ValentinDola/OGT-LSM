@@ -45,7 +45,7 @@ export const Footer = () => {
       <div className="flex flex-col align-center text-center text-base mt-4">
         <p className="text-sm text-white">
           <b>Address:</b> Birelly Street, Villa 404, Old Ashongman, Agbogba,
-          Accra.
+          Accra - GHANA.
         </p>
         <p className="text-sm text-white">
           <b>Telephone:</b>{" "}
