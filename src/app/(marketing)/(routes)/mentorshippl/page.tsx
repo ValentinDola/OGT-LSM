@@ -13,6 +13,7 @@ import toast from "react-hot-toast";
 import { useUser } from "@clerk/nextjs";
 
 import { useRouter } from "next/navigation";
+import { Button } from "@/components/ui/button";
 
 const quotes = [
   {
@@ -283,50 +284,42 @@ export default function MentorshipPlans() {
                     ))}
                   </ul>
 
-                  {/* <Button
-                  disabled={loadingIndex === i && isLoading}
-                  onClick={() =>
-                    onSubscription(
-                      item.fee,
-                      item.title,
-                      item.quote,
-                      item.count,
-                      i
-                    )
-                  }
-                  className="m-4 py-2 px-4  text-sm  hover:text-white"
-                >
-                  {item.button}
-                </Button> */}
-                  <PaystackButton
-                    className="m-4 py-2 px-4 hover:text-white bg-primary text-primary-foreground hover:bg-primary/90 inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50"
-                    publicKey={String(
-                      process.env.NEXT_PUBLIC_PAYSTACK_PUBLIC_KEY
-                    )}
-                    reference={new Date().getTime().toString()}
-                    email={String(userEmail)}
-                    amount={Number(item.fee * 1500)}
-                    currency="GHS"
-                    firstname={String(firstName)}
-                    lastname={String(lastName)}
-                    label={item.title}
-                    onSuccess={() =>
-                      onPaymentSuccess(
-                        item.title,
-                        item.interval,
-                        item.fee * 1500
-                      )
-                    }
-                    onClose={() => onPaymentCancel()}
-                  >
-                    {item.button}
-                  </PaystackButton>
-                  {loadingIndex === i && isLoading && (
-                    <HashLoader
-                      color="#36d7b7"
-                      size={20}
-                      className={`${!isLoading && `hidden`}`}
-                    />
+                  {user ? (
+                    <PaystackButton
+                      className="m-4 py-2 px-4 hover:text-white bg-primary text-primary-foreground hover:bg-primary/90 inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50"
+                      publicKey={String(
+                        process.env.NEXT_PUBLIC_PAYSTACK_PUBLIC_KEY
+                      )}
+                      reference={new Date().getTime().toString()}
+                      email={String(userEmail)}
+                      amount={Number(item.fee * 1500)}
+                      currency="GHS"
+                      firstname={String(firstName)}
+                      lastname={String(lastName)}
+                      label={item.title}
+                      onSuccess={() =>
+                        onPaymentSuccess(
+                          item.title,
+                          item.interval,
+                          item.fee * 1500
+                        )
+                      }
+                      onClose={() => onPaymentCancel()}
+                    >
+                      {item.button}
+                    </PaystackButton>
+                  ) : (
+                    <Button
+                      onClick={() => (
+                        toast.success("Connectez-vous avant de vous abonner"),
+                        router.push(
+                          "https://stable-ocelot-19.accounts.dev/sign-up"
+                        )
+                      )}
+                      className="m-4 py-2 px-4  text-sm  hover:text-white"
+                    >
+                      {item.button}
+                    </Button>
                   )}
                 </div>
               </div>
