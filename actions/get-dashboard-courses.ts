@@ -94,7 +94,7 @@ export const getSubscribedDashboardCourses = async (
     const subscribedCourses = await db.course.findMany({
       where: {
         userId: userId, // Filter by user ID
-        isSubscribed: true,
+        isSubscribable: true,
       },
       select: {
         id: true,
