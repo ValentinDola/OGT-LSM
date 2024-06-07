@@ -71,18 +71,6 @@ export async function POST(req: Request) {
             subscriptionId: String(customerId),
           },
         });
-
-        await db.course.updateMany({
-          where: {
-            userId: userId,
-            isFree: false,
-            isSubscribed: false,
-          },
-          data: {
-            isSubscribed: true,
-            isFree: true,
-          },
-        });
       } else {
         return new NextResponse(
           `Webhook Error: Unhandled event type ${event.type}`,
