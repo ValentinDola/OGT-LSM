@@ -17,7 +17,7 @@ import { getSubscription } from "../../../../../actions/get-subscription";
 
 export default async function Dashboard() {
   const { userId } = auth();
-  const secret_key = "sk_test_066bbd51a3fcfe51b2d6111fc507571527683309";
+
   if (!userId) {
     return redirect("/");
   }

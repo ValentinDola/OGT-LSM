@@ -251,7 +251,6 @@ export default function Plans() {
       <div className="flex justify-center items-center relative mt-10 mb-0">
         <div className=" grid grid-cols-4 gap-1 max-[450px]:grid-cols-1 max-[800px]:grid-cols-2 max-[800px]:gap-y-6">
           {quotes.map((item, i) => {
-            const amount: any = CedisFormat(item.fee);
             return (
               <div
                 key={i}
@@ -263,15 +262,15 @@ export default function Plans() {
                   {item.icon0 && (
                     <div className="absolute -mt-12">{item.icon0}</div>
                   )}
-                  <p className="text-xl font-bold px-4">
+                  <span className="text-xl font-bold px-4">
                     {item.fee && CfaFormat(item.fee)}
-                  </p>
-                  <p className="text-sm ">{item.quote}</p>
+                  </span>
+
                   <ul>
                     {item.benefits.map((item, i) => (
                       <div key={i}>
                         <li
-                          className={`flex text-sm ${
+                          className={`flex text-sm  ${
                             item.includes("plus") && "font-bold"
                           }`}
                         >
@@ -294,7 +293,7 @@ export default function Plans() {
                       currency="GHS"
                       firstname={String(firstName)}
                       lastname={String(lastName)}
-                      label={item.title}
+                      label={`${CfaFormat(item.fee * 605)} `}
                       onSuccess={() =>
                         onPaymentSuccess(
                           item.title,

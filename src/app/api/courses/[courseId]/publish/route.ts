@@ -56,7 +56,7 @@ export async function PATCH(
     );
     // Checks if the course has no published chapters or if any required field (title, description, imageUrl, categoryId) is missing. If true, it returns a NextResponse with a "Missing required fields" status code (400).
     if (
-      !hasPublishedChapters ||
+      //!hasPublishedChapters ||
       !course.title ||
       !course.description ||
       !course.imageUrl ||

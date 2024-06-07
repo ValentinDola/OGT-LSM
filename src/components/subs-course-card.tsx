@@ -64,12 +64,14 @@ export const SubCourseCard = ({
         <p className="text-sm text-slate-400 transition line-clamp-2">
           {description}
         </p>
-        <div className="flex items-center gap-x-2 text-slate-500">
-          <IconBadge size={"sm"} icon={BookOpen} />
-          <span className="text-xs">
-            {chaptersLength} {chaptersLength === 1 ? "Chapitre" : "Chapitres"}
-          </span>
-        </div>
+        {chaptersLength > 0 && (
+          <div className="flex items-center gap-x-2 text-slate-500">
+            <IconBadge size={"sm"} icon={BookOpen} />
+            <span className="text-xs">
+              {chaptersLength} {chaptersLength === 1 ? "Chapitre" : "Chapitres"}
+            </span>
+          </div>
+        )}
 
         <Badge className="mt-3 p-2">{category}</Badge>
 

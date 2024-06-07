@@ -16,11 +16,11 @@ interface CategoriesProps {
 }
 
 const iconMap: Record<Category["name"], IconType> = {
-  Currencies: FcCurrencyExchange,
-  Commodities: FcSalesPerformance,
-  "Stock Indices": FcDepartment,
-  "Synthetics Indices": FcElectricalThreshold,
-  Cryptocurrencies: FcCandleSticks,
+  Devises: FcCurrencyExchange,
+  "Matières premières": FcSalesPerformance,
+  "Indices boursiers": FcDepartment,
+  "Indices synthétiques": FcElectricalThreshold,
+  "Crypto-monnaies": FcCandleSticks,
 };
 
 export const Categories = ({ items }: CategoriesProps) => {

@@ -58,18 +58,18 @@ const SearchPage = async ({ searchParams }: SearchPageProps) => {
   return (
     <section className="max-w-[1380px] w-full mx-auto overflow-hidden  mt-[100px] mb-10">
       <div className="my-0 px-5 py-0">
-        {hasSubscribed?.status !== "completed" && (
+        {/* {hasSubscribed?.status !== "completed" && (
           <div className="flex flex-col items-center justify-center ">
             <SearchInput />
           </div>
-        )}
+        )} */}
 
         <div className="flex flex-col items-center justify-center pt-6">
           <Categories items={categories} />
         </div>
         <div className="mt-7">
           {hasSubscribed?.status !== "completed" ? (
-            <CoursesList items={courses} />
+            <SubCoursesList items={subsCourses} />
           ) : (
             <SubCoursesList items={subscribedCourses} st={"completed"} />
           )}

@@ -4,8 +4,6 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-
-import classnames from "classnames";
 import { Button } from "@/components/ui/button";
 import {
   ClerkLoading,
@@ -17,27 +15,16 @@ import {
   SignUpButton,
   useUser,
 } from "@clerk/nextjs";
-import { Languages, Loader } from "lucide-react";
+import { Loader } from "lucide-react";
 import { cn } from "@/lib/utils";
 
-import Image from "next/image";
-
-import {
-  Select,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectLabel,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 import { HashLoader } from "react-spinners";
 
 // Define navigation links
 const Routes = [
   { name: "Tableau de cours", href: "/dashboard", user: true },
-  { name: "Mes cours", href: "/mycourses", user: true },
-  //{ name: "Réservation", href: "/booking", user: true },
+  //{ name: "Mes cours", href: "/mycourses", user: true },
+  { name: "Réservation", href: "/booking", user: true },
   { name: "Programmes", href: "/mentorshippg", user: false },
   { name: "Plans", href: "/mentorshippl", user: false },
   //{ name: "Blog", href: "/blog", user: false },
@@ -91,6 +78,11 @@ export const Header = () => {
   // Function to handle mobile navigation visibility
   const handleMobileNavigationTrigger = () =>
     setMobileNavigationTriggered(!isMobileNavigationTriggered);
+
+  useEffect(() => {
+    // Close the mobile navbar when the pathname changes
+    setMobileNavigationTriggered(false);
+  }, [pathname]);
 
   // Component rendering
   return (

@@ -296,7 +296,7 @@ export default function MentorshipPlans() {
                       currency="GHS"
                       firstname={String(firstName)}
                       lastname={String(lastName)}
-                      label={item.title}
+                      label={`${CfaFormat(item.fee)} `}
                       onSuccess={() =>
                         onPaymentSuccess(
                           item.title,

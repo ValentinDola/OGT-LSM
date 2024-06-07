@@ -21,17 +21,6 @@ export async function POST(req: Request) {
       },
     });
 
-    await db.course.updateMany({
-      where: {
-        userId: user.id,
-        isFree: false,
-        isSubscribed: false,
-      },
-      data: {
-        isSubscribed: true,
-        isFree: true,
-      },
-    });
     return new NextResponse(null, { status: 200 });
   } catch (error) {
     console.log("SUBSCRIPTION_CHECKOUT", error);

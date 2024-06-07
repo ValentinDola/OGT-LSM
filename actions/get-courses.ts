@@ -96,7 +96,7 @@ export const getFreeCourse = async ({
       where: {
         isPublished: true, // Only include published courses
         isFree: true, // Only include free courses
-        isSubscribed: false,
+        isSubscribable: false,
         title: {
           contains: title, // Filter by title if provided
         },
@@ -164,7 +164,7 @@ export const getSubsCourse = async ({
       where: {
         isPublished: true, // Only include published courses
         isFree: false, // Only include subscribed courses
-        isSubscribed: false,
+        isSubscribable: true,
         title: {
           contains: title, // Filter by title if provided
         },
@@ -191,7 +191,7 @@ export const getSubsCourse = async ({
 
     // Iterate over the fetched courses.
     for (const course of courses) {
-      if (course.isSubscribed === false) {
+      if (course.isSubscribable === false) {
         // If the course is not subscribed, set progress to null.
         coursesWithProgress.push({
           ...course,
@@ -226,7 +226,7 @@ export const getSubscribedCourse = async ({
       where: {
         isPublished: true, // Only include published courses
         isFree: true, // Only include subscribed courses
-        isSubscribed: true,
+        isSubscribable: true,
         title: {
           contains: title, // Filter by title if provided
         },
@@ -253,7 +253,7 @@ export const getSubscribedCourse = async ({
 
     // Iterate over the fetched courses.
     for (const course of courses) {
-      if (course.isSubscribed === false) {
+      if (course.isSubscribable === false) {
         // If the course is not subscribed, set progress to null.
         coursesWithProgress.push({
           ...course,

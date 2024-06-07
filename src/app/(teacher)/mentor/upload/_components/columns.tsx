@@ -49,18 +49,21 @@ export const columns: ColumnDef<Course>[] = [
     },
   },
   {
-    accessorKey: "isPublished",
-    header: ({ column }) => {
+    accessorKey: "isSubscribable",
+    header: "Subscribable",
+    cell: ({ row }) => {
+      const isSubscribable = row.getValue("isSubscribable") || false;
+
       return (
-        <Button
-          variant="ghost"
-          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-        >
-          Published
-          <ArrowUpDown className="ml-2 h-4 w-4" />
-        </Button>
+        <Badge className={cn("bg-slate-500", isSubscribable && "bg-sky-700")}>
+          {isSubscribable ? "Subscribable" : "Unsubscribable"}
+        </Badge>
       );
     },
+  },
+  {
+    accessorKey: "isPublished",
+    header: "Published",
     cell: ({ row }) => {
       const isPublished = row.getValue("isPublished") || false;
 

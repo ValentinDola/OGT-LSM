@@ -44,13 +44,12 @@ export const Footer = () => {
       </div>
       <div className="flex flex-col align-center text-center text-base mt-4">
         <p className="text-sm text-white">
-          <b>Address:</b> Birelly Street, Villa 404, Old Ashongman, Agbogba,
-          Accra - GHANA.
+          <b>Address:</b> Baguida - Lomé, Togo
         </p>
         <p className="text-sm text-white">
           <b>Telephone:</b>{" "}
-          <a className="text-white" href="tel:+233278947786" target="_blank">
-            +233278947786
+          <a className="text-white" href="tel:+22870867614" target="_blank">
+            +22870867614
           </a>
         </p>
       </div>

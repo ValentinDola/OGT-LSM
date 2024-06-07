@@ -19,15 +19,15 @@ datasource db {
 
 // Define the Course model, which maps to a collection in MongoDB.
 model Course {
-  id           String  @id @default(auto()) @map("_id") @db.ObjectId // Unique identifier for each course, mapped to MongoDB's ObjectId.
-  userId       String // ID of the user who created the course.
-  title        String // Title of the course.
-  description  String? // Optional description of the course.
-  imageUrl     String? // Optional image URL for the course.
-  price        Float? // Optional price of the course.
-  isPublished  Boolean @default(false) // Indicates if the course is published.
-  isFree       Boolean @default(false) // Indicates if the course is free.
-  isSubscribed Boolean @default(false) // Indicates if the course is part of a subscription.
+  id             String  @id @default(auto()) @map("_id") @db.ObjectId // Unique identifier for each course, mapped to MongoDB's ObjectId.
+  userId         String // ID of the user who created the course.
+  title          String // Title of the course.
+  description    String? // Optional description of the course.
+  imageUrl       String? // Optional image URL for the course.
+  price          Float? // Optional price of the course.
+  isPublished    Boolean @default(false) // Indicates if the course is published.
+  isFree         Boolean @default(false) // Indicates if the course is free.
+  isSubscribable Boolean @default(false) // Indicates if the course is part of a subscription.
 
   categoryId String?   @db.ObjectId // Optional reference to the category of the course.
   category   Category? @relation(fields: [categoryId], references: [id]) // Defines the relation to the Category model.

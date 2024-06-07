@@ -20,6 +20,7 @@ import { ChaptersForm } from "./_components/chapter-form";
 import { Banner } from "@/components/banner";
 import { CourseActions } from "./_components/course-actions";
 import { CoursesAccessForm } from "./_components/access-form";
+import { CoursesSubscriptionForm } from "./_components/subscription-form";
 
 export default async function Edit({
   params,
@@ -66,7 +67,7 @@ export default async function Edit({
     course.description,
     course.imageUrl,
     course.categoryId,
-    course.chapters.some((chapter) => chapter.isPublished),
+    //course.chapters.some((chapter) => chapter.isPublished),
   ];
 
   const totalFields = requiredFiels.length;
@@ -125,6 +126,10 @@ export default async function Edit({
                 }))}
               />
               <CoursesAccessForm initialData={course} courseId={course.id} />
+              <CoursesSubscriptionForm
+                initialData={course}
+                courseId={course.id}
+              />
             </div>
             <div className="space-y-6 ml-4">
               <div>

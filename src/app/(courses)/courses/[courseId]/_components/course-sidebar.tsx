@@ -3,6 +3,8 @@ import { Chapter, Course, UserProgress } from "@prisma/client";
 
 // Import the ChapterBar component from the local file
 import { ChapterBar } from "./chapter-bar";
+import { useEffect, useState } from "react";
+import { HashLoader } from "react-spinners";
 
 // Define the props interface for the CourseBar component
 interface CourseBarProps {
@@ -24,6 +26,7 @@ export const CourseBar = async ({ children, course }: CourseBarProps) => {
         {/* Div container for the VideoInfo component, responsive to screen size */}
         <div className="w-[1000px] max-[450px]:w-full">
           {/* Render the VideoInfo component, passing children and course as props */}
+
           <div className="w-full flex flex-col bg-[#fff] [transition:all_.5s_ease]">
             {/* Inner div with top padding for rendering nested children components */}
             <div className="pt-3">{children}</div>

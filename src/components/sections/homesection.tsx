@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button } from "../ui/button";
 import { useUser } from "@clerk/nextjs";
 import { useRouter } from "next/navigation";
@@ -53,6 +53,14 @@ export default function HomeSection() {
     },
   ];
 
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActiveThumbnailImage((prev) => (prev + 1) % testimonials.length);
+    }, 3000); // Change the interval time as needed
+
+    return () => clearInterval(interval);
+  }, [testimonials.length]);
+
   const handleTestimonailActivity = (i: React.SetStateAction<number>) =>
     setActiveThumbnailImage(i);
 
@@ -102,7 +110,7 @@ export default function HomeSection() {
                 </div>
                 <div className="absolute w-full h-full bg-white z-[2] opacity-0 left-0 top-0"></div>
                 <div className="h-[650px] w-[520px] overflow-hidden relative max-[980px]:w-full max-[980px]:h-full">
-                  <Image
+                  <img
                     src={getImage(activeThumbnailImage)}
                     alt={getImage(activeThumbnailImage)}
                     className={`h-full w-full object-cover z-[1] absolute left-0 top-0 translate-x-0 translate-y-0 `}
@@ -121,7 +129,11 @@ export default function HomeSection() {
                   }
                   onClick={() => handleTestimonailActivity(i)}
                 >
-                  <Image src={item.source} alt={item.source} />
+                  <img
+                    src={item.source}
+                    alt={item.source}
+                    className={`h-full w-full`}
+                  />
                 </li>
               ))}
             </ul>
@@ -130,6 +142,10 @@ export default function HomeSection() {
             <h1 className="mb-5 text-[4.5rem] tracking-[-4px] leading-[1.1] font-semibold max-[450px]:text-[2.5rem] max-[450px]:-mx-5 max-[980px]:text-[4.2rem] max-[980px]:tracking-[-2px]">
               Découvrez comment maîtriser l&apos;art de trader le Forex de
               manière rentable.
+              <img
+                src="data:image/svg+xml,%3csvg%20width='354'%20height='13'%20viewBox='0%200%20354%2013'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20d='M334.121%208.52542C323.822%208.0467%20314.532%208.12446%20304.783%208.11375C285.755%208.08961%20266.733%206.2337%20247.705%206.29807C205.093%206.46703%20161.821%205.39827%20119.056%207.15629C106.425%207.6672%2093.8096%208.10033%2081.3059%208.83517C80.1063%208.90088%2078.9186%208.96927%2077.7132%209.04704C65.9825%209.74704%2050.6676%209.33804%2039.0077%2010.0729C28.7408%2011.0491%2020.7853%2012.2734%2010.9565%2011.9395C8.34877%2011.7089%205.57046%2011.2918%204.00631%2010.4483C0.592912%208.63671%20-0.994646%206.97942%200.657637%205.59803C1.19566%205.14345%202.12469%204.67544%203.12428%204.25436C5.07649%203.47126%207.41963%202.85841%208.69266%202.80476C30.6661%201.73733%2055.5945%201.53621%2075.4516%201.34578C85.2533%201.25594%2095.3734%201.13391%20107.748%200.901913C136.333%200.569353%20181.41%200.354781%20210.025%200.0343211C235.027%20-0.253986%20260.096%201.33508%20284.857%202.51647C294.271%202.96302%20300.198%202.96301%20308.639%203.08502C310.048%203.09306%20311.641%203.1172%20313.276%203.13866C321.617%203.26069%20336.64%202.65995%20341.491%203.81587C346.348%204.98384%20349.738%205.10587%20353.98%207.25287C354.204%209.37027%20352.496%2010.3478%20350.329%2010.7033C345.275%2011.5494%20340.645%2012.4948%20336.713%2012.7858C332.109%2013.1183%20328.396%2013.1317%20327.643%2012.3312C326.914%2011.528%20327.326%2011.0305%20328.055%2010.663C329.325%2010.0623%20331.615%209.40518%20333.664%208.96001L334.121%208.52542Z'%20fill='%23FC1D4D'%20fill-opacity='0.8'/%3e%3c/svg%3e"
+                alt="line-svg"
+              ></img>
             </h1>
             <h6 className="text-[1rem] font-normal mt-4 max-[980px]:text-[1rem] max-[980px]:tracking-[-0.9px] max-[450px]:-mx-5 max-[450px]:text-sm ">
               OGT Academy est votre guide sûr vers la liberté financière. Nous

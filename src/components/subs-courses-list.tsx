@@ -14,7 +14,7 @@ type SubCourseWithProgressWithCategory = Course & {
 
 interface SubCoursesListProps {
   items: SubCourseWithProgressWithCategory[] | undefined;
-  st: string | undefined;
+  st?: string | undefined;
 }
 
 export const SubCoursesList = ({ items, st }: SubCoursesListProps) => {
