@@ -24,14 +24,14 @@ const quotes = [
     quote:
       "Accédez à tous nos ressources et cours gratuits pour commencer votre parcours Forex.",
     benefits: [
-      "Nous finançons votre compte de trading initial avec 30 % de vos frais d'inscription.",
-      "Accès complet aux classes en direct sur Zoom",
-      "Accès complet au trading en direct",
-      "Accès complet au cours de mentorat OGT",
-      "Signaux de trading gratuits (Bonus)",
-      "Aide et support",
-      "Communauté privée",
-      "Accès complet au trading en direct",
+      "30 % de vos frais d'inscription dans votre compte.",
+
+      "📊 Des Bases Approfondies du Marché Forex",
+      "🏦 Comment Ouvrir et Gérer ses Comptes",
+      "💻 Les Sites et Logiciels les Plus Utilisés par les Traders Pro",
+      "📈 Analyse Technique et Fondamentale Avancées",
+      "🚨 Trader les Annonces Économiques Activement",
+      "🤑 Indices Non-Pondérés pour Trouver des Opportunités FX",
     ],
     button: "Abonnez vous",
   },
@@ -44,12 +44,13 @@ const quotes = [
       "Accédez à tous nos ressources et cours gratuits pour commencer votre parcours Forex.",
     benefits: [
       "Tout ce qui est inclus dans le plan mensuel, plus",
-      "Nous finançons votre compte de trading initial avec 30 % de vos frais d'inscription.",
-      "Contact personnel du mentor",
-      "Sessions de trading en direct hebdomadaires",
-      "Modèle de plan de trading gratuit",
-      "Journal de trading premium gratuit",
-      "Mentorat physique sur rendez-vous",
+      "30 % de vos frais d'inscription dans votre compte.",
+      ,
+      "🦾 Mon Trading Plan Personnel et Mes Règles d Entrées ",
+      "🆘 Gestion de Risque utilisé en Institutions Financières",
+      "🔧 Outil pour Calculer ses Tailles de Position",
+      "🏥 Comment Hedge et Gérer ses Drawdown",
+      "🇺🇸 Utiliser l'Analyse Fondamentale",
       "Support prioritaire",
     ],
     button: "Abonnez vous",
@@ -65,12 +66,12 @@ const quotes = [
       "Accédez à tous nos ressources et cours gratuits pour commencer votre parcours Forex.",
     benefits: [
       "Tout ce qui est inclus dans le plan de 3 mois, plus",
-      "Nous finançons votre compte de trading initial avec 30 % de vos frais d'inscription.",
-      "Séances de trading en direct quotidiennes",
-      "Appel de groupe de 60 minutes avec un mentor pour créer un plan de trading personnalisé",
-      "Certificat de participation",
-      "Journal de trading premium gratuit",
-      "Mentorat physique sur rendez-vous",
+      "30 % de vos frais d'inscription dans votre compte.",
+      "🔎 Espionner les Mouvements Retails",
+      "😑 Comment Contrôler sa Psychologie ",
+      "⏰ Adapter son Trading à son Lifestyle",
+      "🔬 Garder et Utiliser un Track Record",
+      "💰 Où se Trouve l'Argent et Comment l Atteindre ",
       "Support prioritaire absolu",
     ],
     button: "Abonnez vous",
@@ -87,11 +88,11 @@ const quotes = [
       "Accédez à tous nos ressources et cours gratuits pour commencer votre parcours Forex.",
     benefits: [
       "Tout ce qui est inclus dans le plan de 6 mois, plus",
-      "Nous finançons votre compte de trading initial avec 30 % de vos frais d'inscription.",
-      "Séances de trading en direct avancées",
-      "Appel de 120 minutes avec un mentor pour créer un plan de trading personnalisé",
-      "Soirée de remise des diplômes virtuelle",
-      "Journal de trading premium gratuit",
+      "30 % de vos frais d'inscription dans votre compte.",
+      "💸 Ajouter du Volumes sur ses Trades Gagnants",
+      "📝 Outils Backtesting",
+      "⚖️ Mon Système d'Arbitrage pour Trouver des Opportunités",
+      "📲 Un Suivi à Vie par le Groupe Membre de Traders Privé  ",
       "Support prioritaire instantané super prioritaire",
     ],
     button: "Abonnez vous",
@@ -265,19 +266,18 @@ export default function MentorshipPrograms() {
                   {item.icon0 && (
                     <div className="absolute -mt-12">{item.icon0}</div>
                   )}
-                  <p className="text-xl font-bold px-4">
+                  <span className="text-xl font-bold px-4">
                     {item.fee && CfaFormat(item.fee)}
-                  </p>
-                  <p className="text-sm ">{item.quote}</p>
+                  </span>
+
                   <ul>
                     {item.benefits.map((item, i) => (
                       <div key={i}>
                         <li
-                          className={`flex text-sm ${
-                            item.includes("plus") && "font-bold"
+                          className={` text-sm ${
+                            item?.includes("plus") && "font-bold"
                           }`}
                         >
-                          <Check className="mr-4" size={15} color="#48CFAF" />
                           {item}
                         </li>
                       </div>
@@ -296,7 +296,7 @@ export default function MentorshipPrograms() {
                       currency="GHS"
                       firstname={String(firstName)}
                       lastname={String(lastName)}
-                      label={`${CfaFormat(item.fee)} `}
+                      label={`${CfaFormat(item.fee * 605)} `}
                       onSuccess={() =>
                         onPaymentSuccess(
                           item.title,
