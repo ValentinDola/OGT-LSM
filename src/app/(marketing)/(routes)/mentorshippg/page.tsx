@@ -266,18 +266,19 @@ export default function MentorshipPrograms() {
                   {item.icon0 && (
                     <div className="absolute -mt-12">{item.icon0}</div>
                   )}
-                  <span className="text-xl font-bold px-4">
+                  <p className="text-xl font-bold px-4">
                     {item.fee && CfaFormat(item.fee)}
-                  </span>
-
+                  </p>
+                  <p className="text-sm ">{item.quote}</p>
                   <ul>
                     {item.benefits.map((item, i) => (
                       <div key={i}>
                         <li
-                          className={` text-sm ${
+                          className={`flex text-sm ${
                             item?.includes("plus") && "font-bold"
                           }`}
                         >
+                          <Check className="mr-4" size={15} color="#48CFAF" />
                           {item}
                         </li>
                       </div>
@@ -296,7 +297,7 @@ export default function MentorshipPrograms() {
                       currency="GHS"
                       firstname={String(firstName)}
                       lastname={String(lastName)}
-                      label={`${CfaFormat(item.fee * 605)} `}
+                      label={`${CfaFormat(item.fee)} `}
                       onSuccess={() =>
                         onPaymentSuccess(
                           item.title,

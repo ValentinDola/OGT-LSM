@@ -293,7 +293,7 @@ export default function Plans() {
                       currency="GHS"
                       firstname={String(firstName)}
                       lastname={String(lastName)}
-                      label={`${CfaFormat(item.fee * 605)} `}
+                      label={`${CfaFormat(item.fee)} `}
                       onSuccess={() =>
                         onPaymentSuccess(
                           item.title,
