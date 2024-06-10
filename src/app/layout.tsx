@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Montserrat } from "next/font/google";
+import { Montserrat as FontSans } from "next/font/google";
 import "./globals.css";
 import "dotenv/config";
 import { ClerkProvider } from "@clerk/nextjs";
@@ -8,8 +8,12 @@ import { ToastProvider } from "@/components/providers/toaster-provider";
 import ConfettiProvider from "@/components/providers/confetti-provider";
 
 import { Toaster } from "@/components/ui/toaster";
+import { cn } from "@/lib/utils";
 
-const font = Montserrat({ subsets: ["latin"] });
+const fontSans = FontSans({
+  subsets: ["latin"],
+  variable: "--font-sans",
+})
 
 export const metadata: Metadata = {
   title: `OGT Academy`,
@@ -24,7 +28,10 @@ export default function RootLayout({
   return (
     <ClerkProvider localization={frFR}>
       <html>
-        <body className={font.className}>
+        <body className={cn(
+          "min-h-screen bg-background font-sans antialiased",
+          fontSans.variable
+        )}>
           <ToastProvider />
           <ConfettiProvider />
           {children}
