@@ -15,7 +15,7 @@ export const CfaFormat = (price: number) => {
     style: "currency",
     currency: "XOF",
     //It then uses the format method of the Intl.NumberFormat object to format the result of price * 605 as a currency string and returns it.
-  }).format(price * 605);
+  }).format(price * 610);
 };
 
 //This declares a function named CedisFormat that takes a price parameter of type number.
