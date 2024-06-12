@@ -6,6 +6,27 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React from "react";
 
+import {
+  FaSquareXTwitter,
+  FaSquareFacebook,
+  FaSquareYoutube,
+  FaSquareInstagram,
+  FaSquareWhatsapp,
+  FaTelegram,
+} from "react-icons/fa6";
+
+const Socials = [
+  { Icon: FaSquareXTwitter, href: "https://x.com/valentin__me" },
+  {
+    Icon: FaSquareFacebook,
+    href: "https://www.facebook.com/profile.php?id=61560635609634",
+  },
+  { Icon: FaSquareYoutube, href: "https://www.youtube.com/@OGTAcademy" },
+  { Icon: FaSquareInstagram, href: "https://www.instagram.com/ogtacademy/" },
+  { Icon: FaSquareWhatsapp, href: "/" },
+  { Icon: FaTelegram, href: "https://t.me/+M-r4zhGM2G9kZTU0" },
+];
+
 export const Footer = () => {
   const [year, setYear] = React.useState(new Date().getFullYear());
   const router = useRouter();
@@ -70,6 +91,17 @@ export const Footer = () => {
         </div>
         <div className="max-[660px]:w-full max-[660px]:text-center">
           <p className="text-sm text-white">Built with ❤ by OGT</p>
+        </div>
+        <div className="max-[660px]:w-full">
+          <div className="flex flex-row">
+            {Socials.map((item, i) => (
+              <div key={i} className="mx-1">
+                <Link target="_blank" href={item.href}>
+                  <item.Icon color="#fff" size={22} />
+                </Link>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </footer>
