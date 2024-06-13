@@ -23,8 +23,8 @@ const Socials = [
   },
   { Icon: FaSquareYoutube, href: "https://www.youtube.com/@OGTAcademy" },
   { Icon: FaSquareInstagram, href: "https://www.instagram.com/ogtacademy/" },
-  { Icon: FaSquareWhatsapp, href: "/" },
-  { Icon: FaTelegram, href: "https://t.me/+M-r4zhGM2G9kZTU0" },
+  { Icon: FaSquareWhatsapp, href: "https://chat.whatsapp.com/Jwtvd2tNxrRGjxKt4jVPwI" },
+  { Icon: FaTelegram, href: "https://t.me/+owVtEKsvNvM4OTY0" },
 ];
 
 export const Footer = () => {
