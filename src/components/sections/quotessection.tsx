@@ -5,7 +5,7 @@ import Link from "next/link";
 export default function Quotes() {
   const quotes = [
     {
-      href: "https://t.me/+M-r4zhGM2G9kZTU0",
+      href: "https://t.me/+owVtEKsvNvM4OTY0",
       title: "Communauté de Trading",
       quote:
         "Nous favorisons une communauté de trading de plus de 10 000 abonnés où des signaux de haute qualité, des ressources de trading et des outils sont partagés gratuitement. Cliquez sur le bouton ci-dessous pour rejoindre maintenant.",
